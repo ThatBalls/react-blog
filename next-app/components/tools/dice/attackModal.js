@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Form, Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button, Modal, InputGroup, FormControl, Alert } from 'react-bootstrap';
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, ATTACK_DEFAULTS } from './constants';
 
@@ -18,6 +18,7 @@ export default function AttackModal({
   const [numberOfAttacks, setNumberOfAttacks] = useState(initialValues.numberOfAttacks);
   const [critChance, setCritChance] = useState(initialValues.critChance);
   const [attackResult, setAttackResult] = useState(null);
+  const [validationError, setValidationError] = useState(null);
 
   useEffect(() => {
     setValues(initialValues);
@@ -31,6 +32,7 @@ export default function AttackModal({
     setModifier(resultObj.modifier);
     setNumberOfAttacks(resultObj.numberOfAttacks);
     setCritChance(resultObj.critChance);
+    setValidationError(null);
   };
 
   const calculateAttack = () => {
@@ -52,7 +54,13 @@ export default function AttackModal({
         break;
     }
 
-    const damageDice = Dice.parse(attackDamage);
+    let damageDice;
+    try {
+      damageDice = Dice.parse(attackDamage);
+    } catch (err) {
+      throw new Error("Failed to parse damage dice.");
+    }
+    
     const averageDamageRoll = damageDice.number * ((damageDice.type + 1) / 2) + damageDice.modifier;
     const averageDamage = chanceToHit * averageDamageRoll;
     const critBonus = parseFloat(critChance) * (damageDice.number * ((damageDice.type + 1) / 2));
@@ -71,14 +79,22 @@ export default function AttackModal({
   };
 
   const handleAnalyzeAttack = event => {
-    event.preventDefault();
-    setAttackResult(calculateAttack());
+    try {
+      event.preventDefault();
+      setAttackResult(calculateAttack());
+    } catch(err) {
+      setValidationError(err);
+    }
   };
 
-  const onAddClicked = () => {
-    setValues(ATTACK_DEFAULTS);
-    handleAddAttack(calculateAttack(), editIndex);
-  }
+  const onSaveClicked = () => {
+    try {
+      handleAddAttack(calculateAttack(), editIndex);
+      setValues(ATTACK_DEFAULTS);
+    } catch(err) {
+      setValidationError(err);
+    }
+  };
 
   return (<Modal centered show={showAttackModal} onHide={handleAttackClose}>
     <Modal.Header closeButton>
@@ -167,13 +183,14 @@ export default function AttackModal({
           onChange={(event) => setCritChance(event.target.value)} 
           placeholder="Enter Critical Chance" />
       </InputGroup>
+      {validationError && <Alert variant='danger'>{validationError.message}</Alert>}
     </Modal.Body>
     <Modal.Footer>
       <Button variant="secondary" onClick={handleAnalyzeAttack}>
         Analyze
       </Button>
-      <Button variant="primary" onClick={onAddClicked}>
-        Add
+      <Button variant="primary" onClick={onSaveClicked}>
+        {editIndex !== null ? "Save" : "Add"}
       </Button>
     </Modal.Footer>
   </Modal>);

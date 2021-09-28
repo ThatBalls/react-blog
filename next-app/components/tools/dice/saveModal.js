@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Form, Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button, Modal, InputGroup, FormControl, Alert } from 'react-bootstrap';
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, SAVE_DEFAULTS } from './constants';
 
@@ -18,6 +18,7 @@ export default function SaveModal({
   const [numberOfTargets, setNumberOfTargets] = useState(initialValues.numberOfAttacks);
   const [halfOnSave, setHalfOnSave] = useState(initialValues.halfOnSave);
   const [saveResult, setSaveResult] = useState(null);
+  const [validationError, setValidationError] = useState(null);
 
   useEffect(() => {
     setValues(initialValues);
@@ -31,6 +32,7 @@ export default function SaveModal({
     setModifier(resultObj.modifier);
     setNumberOfTargets(resultObj.numberOfAttacks);
     setHalfOnSave(resultObj.halfOnSave);
+    setValidationError(null);
   };
 
   const calculateSave = () => {
@@ -48,8 +50,14 @@ export default function SaveModal({
         break;
     };
 
+    let damageDice;
+    try {
+      damageDice = Dice.parse(saveDamage);
+    } catch (err) {
+      throw new Error("Failed to parse damage dice.");
+    }
+
     const chanceToHit = 1 - chanceToSave;
-    const damageDice = Dice.parse(saveDamage);
     const averageDamageRoll = damageDice.number * ((damageDice.type + 1) / 2) + damageDice.modifier;
     const saveFailDamage = chanceToHit * averageDamageRoll;
     const saveSuccessDamage = halfOnSave ? chanceToSave * (averageDamageRoll / 2) : 0;
@@ -68,14 +76,22 @@ export default function SaveModal({
   };
 
   const handleAnalyzeSave = () => {
-    event.preventDefault();
-    setSaveResult(calculateSave());
+    try {
+      event.preventDefault();
+      setSaveResult(calculateSave());
+    } catch(err) {
+      setValidationError(err);
+    }
   };
 
-  const onAddClicked = () => {
-    setValues(SAVE_DEFAULTS);
-    handleAddSave(calculateSave(), editIndex);
-  }
+  const onSaveClicked = () => {
+    try {
+      handleAddSave(calculateSave(), editIndex);
+      setValues(SAVE_DEFAULTS);
+    } catch(err) {
+      setValidationError(err);
+    }
+  };
 
   return (<Modal centered show={showSaveModal} onHide={handleSaveClose}>
     <Modal.Header closeButton>
@@ -83,7 +99,7 @@ export default function SaveModal({
     </Modal.Header>
     <Modal.Body>
       <InputGroup className="mb-3" controlId="formSaveName">
-        <InputGroup.Text>Save DC</InputGroup.Text>
+        <InputGroup.Text>Save Name</InputGroup.Text>
         <FormControl
           type="text"
           value={saveName}
@@ -158,13 +174,14 @@ export default function SaveModal({
           onChange={(event) => setHalfOnSave(event.target.checked)}
           label="Half Damage on Save" />
       </InputGroup>
+      {validationError && <Alert variant='danger'>{validationError.message}</Alert>}
     </Modal.Body>
     <Modal.Footer>
       <Button variant="secondary" onClick={handleAnalyzeSave}>
         Analyze
       </Button>
-      <Button variant="primary" onClick={onAddClicked}>
-        Add
+      <Button variant="primary" onClick={onSaveClicked}>
+        {editIndex !== null ? "Save" : "Add"}
       </Button>
     </Modal.Footer>
   </Modal>);
