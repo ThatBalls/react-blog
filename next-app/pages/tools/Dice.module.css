@@ -1,0 +1,15 @@
+.buttonRow {
+  justify-content: center;
+}
+
+.container {
+  margin-top: 1rem;
+}
+
+.cardFlex {
+  display: flex;
+  flex-direction: horizontal;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+}
