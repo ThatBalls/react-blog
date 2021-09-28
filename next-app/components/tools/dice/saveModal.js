@@ -157,7 +157,7 @@ export default function SaveModal({
           onChange={() => setModifier(MODIFIERS.ADVANTAGE)}
           label="Advantage" />
       </InputGroup>
-      <InputGroup>
+      <InputGroup className="mb-3">
         <InputGroup.Text>Number of Targets</InputGroup.Text>
         <FormControl
           type="text"

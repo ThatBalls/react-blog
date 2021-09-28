@@ -167,7 +167,7 @@ export default function AttackModal({
           onChange={() => setModifier(MODIFIERS.DOUBLE_ADVANTAGE)}
           label="Double Advantage" />
       </InputGroup>
-      <InputGroup>
+      <InputGroup className="mb-3">
         <InputGroup.Text>Number of Attacks</InputGroup.Text>
         <FormControl
           type="text"
