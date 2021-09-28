@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Form, Button, Alert, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, SAVE_DEFAULTS } from './constants';
 

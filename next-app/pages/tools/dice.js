@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import Head from 'next/head';
-import { Form, Button, Tabs, Tab, Alert, Modal, InputGroup, FormControl, Card, Stack, Row } from 'react-bootstrap';
+import { Button, Alert, Card, Stack, Row } from 'react-bootstrap';
 import Dice from 'dice-notation-js';
-import AttackModal from './attackModal';
-import SaveModal from './saveModal';
-import { MODIFIERS, TYPES, ATTACK_DEFAULTS, SAVE_DEFAULTS } from './constants';
+import AttackModal from 'components/tools/dice/attackModal';
+import SaveModal from 'components/tools/dice/saveModal';
+import { TYPES, ATTACK_DEFAULTS, SAVE_DEFAULTS } from 'components/tools/dice/constants';
 import styles from './Dice.module.css';
 
 export default function DiceCalculator() {

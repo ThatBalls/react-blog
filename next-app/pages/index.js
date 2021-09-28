@@ -16,7 +16,7 @@ export default function Home() {
           Welcome to Dire Dice
         </h1>
         <h3 className={styles.description}>
-          What's new:
+          {"What's new:"}
         </h3>
       </Row>
       <Row>
@@ -24,7 +24,7 @@ export default function Home() {
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src="sktcover.png" />
             <Card.Body>
-              <Card.Title>Storm King's Thunder DM Diary</Card.Title>
+              <Card.Title>{"Storm King's Thunder DM Diary"}</Card.Title>
               <Card.Text>
                 The gang meets Zephyros!
               </Card.Text>

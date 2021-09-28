@@ -27,7 +27,7 @@ function Layout({ children }) {
               <NavLink href="/">Home</NavLink>
               <NavLink href="/builds/1">Builds</NavLink>
               <NavDropdown title="DM Diaries" id="basic-nav-dropdown">
-                <DropDownLink href="/diaries/1">Storm King's Thunder</DropDownLink>
+                <DropDownLink href="/diaries/1">{"Storm King's Thunder"}</DropDownLink>
               </NavDropdown>
               <NavDropdown title="Tools" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/tools/dice">Dice Calculator</NavDropdown.Item>
