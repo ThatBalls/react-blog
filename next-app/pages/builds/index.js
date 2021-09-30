@@ -33,7 +33,7 @@ export default function BuildList({ buildList }) {
       </Head>
       <main className={styles.main}>
         {buildList.map(build => (
-          <Link href={`builds/${build.slug}`}>{build.title}</Link>
+          <Link key={build.slug} href={`builds/${build.slug}`}>{build.title}</Link>
         ))}
       </main>
     </div>

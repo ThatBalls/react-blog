@@ -1,21 +1,21 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css';
     
-export default function Diary({ diaryId, title }) {
+export default function Diary({ journalId, title }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{ title } - My Diaries</title>
+        <title>{ title } - My Journals</title>
         <meta name="description" content={`Learn more about ${title}`} />
         <meta property="og:title" content={`${ title } - My Clothing Store`} />
         <meta property="og:description" content={`Learn more about ${title}`} />
-        <meta property="og:url" content={`https://dire-dice.com/builds/${diaryId}`} />
+        <meta property="og:url" content={`https://dire-dice.com/builds/${journalId}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         <h1 className={styles.title}>{ title }</h1>
-        <p>Diary ID: { diaryId }</p>
+        <p>Journal ID: { journalId }</p>
       </main>
     </div>
   )
@@ -24,8 +24,8 @@ export default function Diary({ diaryId, title }) {
 export async function getStaticProps({ params = {} } = {}) {
   return {
     props: {
-      diaryId: params.diaryId,
-      title: `Diary ${params.diaryId}`
+      journalId: params.journalId,
+      title: `Diary ${params.journalId}`
     }
   }
 }
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
   const paths = [...new Array(5)].map((i, index) => {
     return {
       params: {
-        diaryId: `${index + 1}`,
+        journalId: `${index + 1}`,
       }
     };
   });
