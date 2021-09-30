@@ -9,7 +9,7 @@ const api = new GhostContentAPI({
   version: "v3"
 });
 
-export async function getPosts() {
+export async function getBuilds() {
   return await api.posts
     .browse({
       filter: 'tag:Builds'
@@ -19,7 +19,7 @@ export async function getPosts() {
     });
 };
 
-export async function readPost(slug) {
+export async function readBuild(slug) {
   return await api.posts
     .read({
       slug
@@ -50,27 +50,26 @@ export default function Build({ buildSlug, title, meta, html }) {
 }
 
 export async function getStaticProps({ params = {} } = {}) {
-  const targetPost = await readPost(params.buildSlug);
+  const targetBuild = await readBuild(params.buildSlug);
   return {
     props: {
       buildSlug: params.buildSlug,
-      title: targetPost.title,
+      title: targetBuild.title,
       meta: {
-        title: targetPost.meta_title,
-        description: targetPost.meta_description
+        title: targetBuild.meta_title,
+        description: targetBuild.meta_description
       },
-      html: targetPost.html
+      html: targetBuild.html
     }
   }
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
-  console.log(posts);
-  const paths = posts.map((post, index) => {
+  const builds = await getBuilds();
+  const paths = builds.map((build, index) => {
     return {
       params: {
-        buildSlug: post.slug,
+        buildSlug: build.slug,
       }
     };
   });
