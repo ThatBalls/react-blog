@@ -7,6 +7,20 @@
   align-items: center;
 }
 
+.buildList {
+  padding: 5rem 20%;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .main > p {
   justify-content: left;
+  width: 100%;
+}
+
+.main > ul {
+  width: 100%;
 }

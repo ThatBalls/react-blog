@@ -1,25 +1,11 @@
 import Head from 'next/head'
-import GhostContentAPI from "@tryghost/content-api";
+import {getBuilds, getPage} from 'utils/ghostAPI';
+import { Card, Button } from 'react-bootstrap';
+import { HeroImage } from 'components';
 import Link from 'next/link';
 import styles from './Builds.module.css';
 
-const api = new GhostContentAPI({
-  url: 'https://dire-dice-ghost.herokuapp.com',
-  key: 'ff248a91e1538cb754165b35be',
-  version: "v3"
-});
-
-export async function getBuilds() {
-  return await api.posts
-    .browse({
-      filter: 'tag:Builds'
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
-    
-export default function BuildList({ buildList }) {
+export default function BuildList({ pageData, buildList }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -31,9 +17,20 @@ export default function BuildList({ buildList }) {
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <HeroImage
+        coverImg={pageData.feature_image}
+        title="Creative Character Builds"
+        subtitle="Optimal Fun"/>
+      <main className={styles.buildList}>
         {buildList.map(build => (
-          <Link key={build.slug} href={`builds/${build.slug}`}>{build.title}</Link>
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={build.feature_image} />
+            <Card.Body>
+              <Card.Title>{build.title}</Card.Title>
+              <Card.Text>{build.meta_description}</Card.Text>
+              <Link href={`/builds/${build.slug}`}><Button variant="primary">Read</Button></Link>
+            </Card.Body>
+          </Card>
         ))}
       </main>
     </div>
@@ -41,14 +38,12 @@ export default function BuildList({ buildList }) {
 }
 
 export async function getStaticProps() {
-  const buildResponse = await getBuilds();
-  const buildList = buildResponse.map(build => ({
-    title: build.title,
-    slug: build.slug
-  }));
+  const buildList = await getBuilds();
+  const pageData = await getPage('builds');
   return {
     props: {
+      pageData,
       buildList
     }
   }
-}
+};

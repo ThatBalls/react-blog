@@ -40,11 +40,11 @@ export default function SaveModal({
     switch (modifier) {
       case MODIFIERS.DISADVANTAGE:
         // Disadvantage is calculated by both attacks hitting
-        chanceToHit = Math.pow(chanceToHit, 2);
+        chanceToSave = Math.pow(chanceToSave, 2);
         break;
       case MODIFIERS.ADVANTAGE:
         // Advantage is calculated by both attacks NOT missing
-        chanceToHit = 1 - Math.pow((1 - chanceToHit), 2);
+        chanceToSave = 1 - Math.pow((1 - chanceToSave), 2);
         break;
       default:
         break;
@@ -58,6 +58,7 @@ export default function SaveModal({
     }
 
     const chanceToHit = 1 - chanceToSave;
+    console.log(chanceToSave);
     const averageDamageRoll = damageDice.number * ((damageDice.type + 1) / 2) + damageDice.modifier;
     const saveFailDamage = chanceToHit * averageDamageRoll;
     const saveSuccessDamage = halfOnSave ? chanceToSave * (averageDamageRoll / 2) : 0;

@@ -1,35 +1,9 @@
 import Head from 'next/head'
-import GhostContentAPI from "@tryghost/content-api";
+import {getBuilds, readBuild} from 'utils/ghostAPI';
 import parse from 'html-react-parser';
 import styles from './Builds.module.css';
-
-const api = new GhostContentAPI({
-  url: 'https://dire-dice-ghost.herokuapp.com',
-  key: 'ff248a91e1538cb754165b35be',
-  version: "v3"
-});
-
-export async function getBuilds() {
-  return await api.posts
-    .browse({
-      filter: 'tag:Builds'
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
-
-export async function readBuild(slug) {
-  return await api.posts
-    .read({
-      slug
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
     
-export default function Build({ buildSlug, title, meta, html }) {
+export default function Build({ buildSlug, title, meta, html, imageUrl }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -43,6 +17,7 @@ export default function Build({ buildSlug, title, meta, html }) {
       </Head>
       <main className={styles.main}>
         <h1 className={styles.title}>{ title }</h1>
+        <img src={imageUrl}></img>
         {parse(html)}
       </main>
     </div>
@@ -59,7 +34,8 @@ export async function getStaticProps({ params = {} } = {}) {
         title: targetBuild.meta_title,
         description: targetBuild.meta_description
       },
-      html: targetBuild.html
+      html: targetBuild.html,
+      imageUrl: targetBuild.feature_image
     }
   }
 }
