@@ -23,7 +23,7 @@ export default function BuildList({ pageData, buildList }) {
         subtitle="Optimal Fun"/>
       <main className={styles.buildList}>
         {buildList.map(build => (
-          <Card style={{ width: '18rem' }}>
+          <Card key={build.uuid} style={{ width: '18rem' }}>
             <Card.Img variant="top" src={build.feature_image} />
             <Card.Body>
               <Card.Title>{build.title}</Card.Title>

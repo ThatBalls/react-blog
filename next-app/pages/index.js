@@ -27,7 +27,7 @@ export default function Home({coverImg, featuredPosts}) {
         <Row>
           {featuredPosts.map(post => {
             return (
-              <Col>
+              <Col key={post.uuid}>
                 <Card style={{ width: '18rem' }}>
                   <Card.Img variant="top" src={post.feature_image} />
                   <Card.Body>
