@@ -26,7 +26,7 @@ function Layout({ children }) {
             <NavLink href="/">Home</NavLink>
             <NavLink href="/builds">Builds</NavLink>
             <NavDropdown title="Journals" id="basic-nav-dropdown">
-              <DropDownLink href="/journals/skt">Storm King's Thunder</DropDownLink>
+              <DropDownLink href="/journals/skt">{"Storm King's Thunder"}</DropDownLink>
             </NavDropdown>
             <NavDropdown title="Tools" id="basic-nav-dropdown">
               <DropDownLink href="/tools/dice">Dice Calculator</DropDownLink>
