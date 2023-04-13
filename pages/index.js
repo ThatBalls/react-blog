@@ -15,7 +15,7 @@ export default function Home({coverImg, featuredPosts}) {
       </Head>
       <HeroImage
         coverImg={coverImg}
-        title="Welcome to DM Dad's Domain"
+        title="Dire Dice"
         subtitle="Roll with it"
       />
       <Container fluid className={styles.main}>

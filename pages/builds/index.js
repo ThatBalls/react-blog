@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import {getBuilds, getPage} from 'utils/ghostAPI';
+import { getPage } from 'utils/ghostAPI';
+import { getBuilds } from "utils/payloadApi";
 import { Card, Button } from 'react-bootstrap';
 import { HeroImage } from 'components';
 import Link from 'next/link';
@@ -22,12 +23,12 @@ export default function BuildList({ pageData, buildList }) {
         title="Creative Character Builds"
         subtitle="Optimal Fun"/>
       <main className={styles.buildList}>
-        {buildList.map(build => (
-          <Card key={build.uuid} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={build.feature_image} />
+        {buildList.docs.map(build => (
+          <Card key={build.id}>
+            <Card.Img variant="top" src={build.bannerImage.sizes.thumbnail.url} />
             <Card.Body>
               <Card.Title>{build.title}</Card.Title>
-              <Card.Text>{build.meta_description}</Card.Text>
+              <Card.Text>{build.shortDescription}</Card.Text>
               <Link href={`/builds/${build.slug}`}><Button variant="primary">Read</Button></Link>
             </Card.Body>
           </Card>
