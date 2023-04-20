@@ -63,6 +63,7 @@ export default function Build({ buildSlug, title, meta, concept, levelTable, lev
 }
 
 export async function getStaticProps({ params = {} } = {}) {
+  console.log((await getBuild(params.buildSlug)).docs)
   const targetBuild = (await getBuild(params.buildSlug)).docs[0];
   return {
     props: {

@@ -2,7 +2,7 @@ import axios from "axios";
 import qs from "qs";
 
 const api = axios.create({
-    baseURL: "http://localhost:3001/api",
+    baseURL: `${process.env.PAYLOAD_HOST}/api`,
     headers: {
         "Access-Control-Allow-Origin": "*",
         'Access-Control-Allow-Headers': '*'

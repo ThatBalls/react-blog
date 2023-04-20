@@ -4,7 +4,7 @@ module.exports = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*',
+        destination: `${process.env.PAYLOAD_HOST}/api/:path*`,
       },
     ]
   },
