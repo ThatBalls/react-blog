@@ -1,14 +1,14 @@
 import React from "react";
 import Head from 'next/head'
-import {getBuilds, readBuild} from 'utils/ghostAPI';
-import {getBuild} from "utils/payloadApi";
+import { getBuild, getBuilds } from "utils/payloadApi";
 import { slateToHtml, payloadSlateToDomConfig } from 'slate-serializers'
 import parse from 'html-react-parser';
 import styles from './Builds.module.css';
+import { BuildPage, BannerWrapper, ContentWrapper, SplitRow, LevelTable } from "./builds.css.ts";
     
 export default function Build({ buildSlug, title, meta, concept, levelTable, levelBlocks, analysis, imageUrl }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
@@ -18,19 +18,19 @@ export default function Build({ buildSlug, title, meta, concept, levelTable, lev
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.bannerWrapper}>
+      <BuildPage>
+        <BannerWrapper>
           <img src={imageUrl}></img>
           <h1 className={styles.title}>{ title }</h1>
-        </div>
-        <div className={styles.content}>
+        </BannerWrapper>
+        <ContentWrapper>
           <h2>Character Concept</h2>
-          <div className={styles.splitRow}>
+          <SplitRow>
             <div>
               {parse(slateToHtml(concept, payloadSlateToDomConfig))}
             </div>
             <div>
-              <table className={styles.levelTable}>
+              <LevelTable>
                 <thead>
                 <tr>
                   <th>Level</th>
@@ -45,9 +45,9 @@ export default function Build({ buildSlug, title, meta, concept, levelTable, lev
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </LevelTable>
             </div>
-          </div>
+          </SplitRow>
           {levelBlocks.map(block => {
             return (<React.Fragment key={block.titile}>
               <h2>{block.title}</h2>
@@ -56,14 +56,13 @@ export default function Build({ buildSlug, title, meta, concept, levelTable, lev
           })}
           <h2>Analysis</h2>
           {parse(slateToHtml(analysis, payloadSlateToDomConfig))}
-        </div>
-      </main>
+        </ContentWrapper>
+      </BuildPage>
     </div>
   )
 }
 
 export async function getStaticProps({ params = {} } = {}) {
-  console.log((await getBuild(params.buildSlug)).docs)
   const targetBuild = (await getBuild(params.buildSlug)).docs[0];
   return {
     props: {
@@ -83,7 +82,7 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  const builds = await getBuilds();
+  const builds = (await getBuilds()).docs;
   const paths = builds.map((build, index) => {
     return {
       params: {

@@ -25,9 +25,9 @@ function Layout({ children }) {
           <Nav className="me-auto">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/builds">Builds</NavLink>
-            <NavDropdown title="Journals" id="basic-nav-dropdown">
+            {/*<NavDropdown title="Journals" id="basic-nav-dropdown">
               <DropDownLink href="/journals/skt">{"Storm King's Thunder"}</DropDownLink>
-            </NavDropdown>
+  </NavDropdown>*/}
             <NavDropdown title="Tools" id="basic-nav-dropdown">
               <DropDownLink href="/tools/dice">Dice Calculator</DropDownLink>
             </NavDropdown>
@@ -35,18 +35,6 @@ function Layout({ children }) {
         </Navbar.Collapse>
       </Navbar>
       { children }
-  {/*         <footer className={styles.footer}>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Powered by{' '}
-              <span className={styles.logo}>
-                <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-              </span>
-            </a>
-          </footer> */}
     </>
   );
 };

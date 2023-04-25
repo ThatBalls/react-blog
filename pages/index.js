@@ -2,10 +2,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { HeroImage } from 'components';
-import {getSettings, getFeaturedPosts} from 'utils/ghostAPI';
+import { getPage, getFeaturedPosts } from '../utils/payloadApi';
 import styles from '../styles/Home.module.css';
 
-export default function Home({coverImg, featuredPosts}) {
+export default function Home({coverImg, featuredPosts, dataHost}) {
   return (
     <>
       <Head>
@@ -29,11 +29,11 @@ export default function Home({coverImg, featuredPosts}) {
             return (
               <Col key={post.uuid}>
                 <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={post.feature_image} />
+                  <Card.Img variant="top" src={`${dataHost}${post.bannerImage.sizes.thumbnail.url}`} />
                   <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
-                    <Card.Text>{post.meta_description}</Card.Text>
-                    {post.primary_tag && <Link href={`/${post.primary_tag.slug}/${post.slug}`}><Button variant="primary">Read</Button></Link>}
+                    <Card.Text>{post.shortDescription}</Card.Text>
+                    {post.category && <Link href={`/${post.category.slug}/${post.slug}`}><Button variant="primary">Read</Button></Link>}
                   </Card.Body>
                 </Card>
               </Col>
@@ -58,12 +58,14 @@ export default function Home({coverImg, featuredPosts}) {
 }
 
 export async function getStaticProps() {
-  const settings = await getSettings();
+  const pageData = await getPage("home");
   const featuredPosts = await getFeaturedPosts();
+  const dataHost = process.env.PAYLOAD_HOST;
   return {
     props:{
-      coverImg: settings.cover_image,
-      featuredPosts: featuredPosts
+      coverImg: `${dataHost}${pageData.bannerImage.url}`,
+      featuredPosts,
+      dataHost,
     }
   };
 }

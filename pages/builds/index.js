@@ -1,14 +1,13 @@
 import Head from 'next/head'
-import { getPage } from 'utils/ghostAPI';
-import { getBuilds } from "utils/payloadApi";
+import { getBuilds, getPage } from "utils/payloadApi";
 import { Card, Button } from 'react-bootstrap';
 import { HeroImage } from 'components';
 import Link from 'next/link';
-import styles from './Builds.module.css';
+import { BuildList } from "./builds.css.ts"
 
-export default function BuildList({ pageData, buildList }) {
+export default function BuildsPage({ coverImg, buildList, dataHost }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Build List</title>
         <meta name="description" content='Build List' />
@@ -19,13 +18,13 @@ export default function BuildList({ pageData, buildList }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeroImage
-        coverImg={pageData.feature_image}
+        coverImg={coverImg}
         title="Creative Character Builds"
         subtitle="Optimal Fun"/>
-      <main className={styles.buildList}>
+      <BuildList>
         {buildList.docs.map(build => (
           <Card key={build.id}>
-            <Card.Img variant="top" src={build.bannerImage.sizes.thumbnail.url} />
+            <Card.Img variant="top" src={`${dataHost}${build.bannerImage.sizes.thumbnail.url}`} />
             <Card.Body>
               <Card.Title>{build.title}</Card.Title>
               <Card.Text>{build.shortDescription}</Card.Text>
@@ -33,18 +32,20 @@ export default function BuildList({ pageData, buildList }) {
             </Card.Body>
           </Card>
         ))}
-      </main>
+      </BuildList>
     </div>
   )
 }
 
 export async function getStaticProps() {
   const buildList = await getBuilds();
-  const pageData = await getPage('builds');
+  const pageData = await getPage("builds");
+  const dataHost = process.env.PAYLOAD_HOST;
   return {
     props: {
-      pageData,
-      buildList
+      coverImg: `${dataHost}${pageData.bannerImage.url}`,
+      buildList,
+      dataHost,
     }
   }
 };
