@@ -11,7 +11,6 @@
     "pm2:stop": "pm2 stop react-blog; pm2 delete react-blog"
   },
   "dependencies": {
-    "@tryghost/content-api": "^1.5.13",
     "axios": "^1.3.2",
     "bootstrap": "5.1.1",
     "css-select": "^5.1.0",
