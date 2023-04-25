@@ -4,7 +4,7 @@ import { getBuild, getBuilds } from "utils/payloadApi";
 import { slateToHtml, payloadSlateToDomConfig } from 'slate-serializers'
 import parse from 'html-react-parser';
 import styles from './Builds.module.css';
-import { BuildPage, BannerWrapper, ContentWrapper, SplitRow, LevelTable } from "./builds.css.ts";
+import { BuildPage, BannerWrapper, ContentWrapper, SplitRow, LevelTable } from "styles/builds.css";
     
 export default function Build({ buildSlug, title, meta, concept, levelTable, levelBlocks, analysis, imageUrl }) {
   return (

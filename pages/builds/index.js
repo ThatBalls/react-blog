@@ -3,7 +3,7 @@ import { getBuilds, getPage } from "utils/payloadApi";
 import { Card, Button } from 'react-bootstrap';
 import { HeroImage } from 'components';
 import Link from 'next/link';
-import { BuildList } from "./builds.css.ts"
+import { BuildList } from "styles/builds.css"
 
 export default function BuildsPage({ coverImg, buildList, dataHost }) {
   return (
