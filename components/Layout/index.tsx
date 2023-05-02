@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Row, Col, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import Link from 'next/link';
-import styles from '../styles/Layout.module.css'
+import styles from 'styles/Layout.module.css'
 
 const NavLink = ({href, children}) => {
   return (
@@ -15,7 +15,7 @@ const DropDownLink = ({href, children}) => {
   );
 };
 
-function Layout({ children }) {
+export const Layout = ({ children }) => {
   return (
     <>
       <Navbar className={styles.navbar} bg="dark" variant="dark" sticky="top">
@@ -38,5 +38,3 @@ function Layout({ children }) {
     </>
   );
 };
-
-export default Layout;

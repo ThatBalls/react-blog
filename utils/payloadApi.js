@@ -12,16 +12,19 @@ const api = axios.create({
 export default api;
 
 export async function getBuilds() {
-  const query = {
+/*   const query = {
     status: {
       equals: "published"
     }
   };
   const stringifiedQuery = qs.stringify({
     where: query
-  }, { addQueryPrefix: true });
+  }, { addQueryPrefix: true }); */
   try {
-    return (await api.get(`builds${stringifiedQuery}`)).data;
+    //return (await api.get(`builds${stringifiedQuery}`)).data;
+    return (await api.get(`builds`)).data.docs.filter((build) => {
+      return build.status === "published";
+    });
   } catch (err) {
     console.log(err);
     return err;
@@ -29,16 +32,17 @@ export async function getBuilds() {
 };
 
 export async function getBuild(slug) {
-  const query = {
+/*   const query = {
     slug: {
       equals: slug
     }
   };
   const stringifiedQuery = qs.stringify({
     where: query
-  }, { addQueryPrefix: true });
+  }, { addQueryPrefix: true }); */
   try {
-    return (await api.get(`builds${stringifiedQuery}`)).data
+    //return (await api.get(`builds${stringifiedQuery}`)).data
+    return (await getBuilds()).find((build => build.slug === slug));
   } catch (err) {
     console.log(err);
     return err;
@@ -55,7 +59,7 @@ export async function getMedia() {
 }
 
 // TODO: Update to use stringified query instead of filtering
-export async function getFeaturedPosts() {
+export async function getFeaturedBuilds() {
   /*
   const query = {
     "tags.name": {
@@ -68,7 +72,7 @@ export async function getFeaturedPosts() {
   */
   try {
     //return (await api.get(`builds${stringifiedQuery}`)).data;
-    return (await api.get("builds")).data.docs.filter(
+    return (await getBuilds()).filter(
       (build) => build.tags.map(
         tag => tag.name.toLowerCase()
       ).indexOf("featured build") > -1);

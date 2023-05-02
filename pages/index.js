@@ -1,11 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { HeroImage } from 'components';
-import { getPage, getFeaturedPosts } from '../utils/payloadApi';
-import styles from '../styles/Home.module.css';
+import { HeroImage, FeaturedBuilds } from 'components';
+import { getPage, getFeaturedBuilds } from 'utils/payloadApi';
+import { HomeContainer } from "styles/Home.css";
 
-export default function Home({coverImg, featuredPosts, dataHost}) {
+export default function Home({coverImg, featuredBuilds}) {
   return (
     <>
       <Head>
@@ -18,54 +16,21 @@ export default function Home({coverImg, featuredPosts, dataHost}) {
         title="Dire Dice"
         subtitle="Roll with it"
       />
-      <Container fluid className={styles.main}>
-        <Row>
-          <h3 className={styles.description}>
-            {"What's new:"}
-          </h3>
-        </Row>
-        <Row>
-          {featuredPosts.map(post => {
-            return (
-              <Col key={post.uuid}>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={`${dataHost}${post.bannerImage.sizes.thumbnail.url}`} />
-                  <Card.Body>
-                    <Card.Title>{post.title}</Card.Title>
-                    <Card.Text>{post.shortDescription}</Card.Text>
-                    {post.category && <Link href={`/${post.category.slug}/${post.slug}`}><Button variant="primary">Read</Button></Link>}
-                  </Card.Body>
-                </Card>
-              </Col>
-            )
-          })}
-          <Col>
-            <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="dice.jpg" />
-              <Card.Body>
-                <Card.Title>Dice Calculator</Card.Title>
-                <Card.Text>
-                  Calculate your damage or whatever.
-                </Card.Text>
-                <Link href='/tools/dice'><Button variant="primary">Get Crunchy!</Button></Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <HomeContainer>
+        <FeaturedBuilds builds={featuredBuilds} />
+      </HomeContainer>
     </>
   )
 }
 
 export async function getStaticProps() {
   const pageData = await getPage("home");
-  const featuredPosts = await getFeaturedPosts();
+  const featuredBuilds = await getFeaturedBuilds();
   const dataHost = process.env.PAYLOAD_HOST;
   return {
     props:{
       coverImg: `${dataHost}${pageData.bannerImage.url}`,
-      featuredPosts,
-      dataHost,
+      featuredBuilds
     }
   };
 }
