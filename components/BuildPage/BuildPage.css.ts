@@ -28,8 +28,6 @@ export const BannerWrapper = styled.div`
     width: auto;
     height: auto;
     position: absolute;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
   }
 `;
 
