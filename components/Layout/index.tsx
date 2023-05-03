@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { Row, Col, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { Footer } from "components/Footer";
 import Link from 'next/link';
 import styles from 'styles/Layout.module.css'
+import { MainContent, LayoutContainer } from './Layout.css';
 
 const NavLink = ({href, children}) => {
   return (
@@ -17,7 +19,7 @@ const DropDownLink = ({href, children}) => {
 
 export const Layout = ({ children }) => {
   return (
-    <>
+    <LayoutContainer>
       <Navbar className={styles.navbar} bg="dark" variant="dark" sticky="top">
         <Navbar.Brand><Link href='/'>Dire Dice</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,7 +36,10 @@ export const Layout = ({ children }) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      { children }
-    </>
+      <MainContent>
+        { children }
+      </MainContent>
+      <Footer />
+    </LayoutContainer>
   );
 };

@@ -9,7 +9,6 @@ export const FeaturedToolsContainer = styled.section`
   width: 100%;
   height: 400px;
   overflow: hidden;
-  padding-left: 80px;
   position: relative;
   background-color: ${COLORS.TERTIARY};
 `;
@@ -19,7 +18,6 @@ export const FeaturedToolPreviewArea = styled.div`
 `;
 
 export const FeaturedToolWrapper = styled.div`
-  transform: skew(20deg);
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -55,9 +53,8 @@ export const FeaturedToolLinkButton = styled(Link)`
 `;
 
 export const FeaturedToolImage = styled.img`
-  transform: skew(-20deg);
-  position: absolute;
-  left: -110px;
-  object-fit: none;
-  object-position: -200px 0;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  z-index: 1;
 `;
