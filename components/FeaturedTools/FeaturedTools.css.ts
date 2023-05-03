@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from 'next/link';
+import Image from "next/image";
 import { COLORS } from "styles/vars.css";
 
 export const FeaturedToolsContainer = styled.section`
@@ -22,6 +23,7 @@ export const FeaturedToolWrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 5;
+  position: relative;
 `;
 
 export const FeaturedToolDescriptionWrapper = styled.div`
@@ -52,9 +54,6 @@ export const FeaturedToolLinkButton = styled(Link)`
   }
 `;
 
-export const FeaturedToolImage = styled.img`
-  width: 100%;
-  overflow: hidden;
-  height: 100%;
-  z-index: 1;
+export const FeaturedToolImage = styled(Image)`
+  max-width: 800px;
 `;

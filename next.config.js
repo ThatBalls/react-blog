@@ -12,4 +12,14 @@ module.exports = {
       }
     ]
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: process.env.PAYLOAD_HOST,
+        port: '',
+        pathname: '/media/**',
+      },
+    ],
+  },
 }

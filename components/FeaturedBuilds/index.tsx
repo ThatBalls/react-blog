@@ -51,7 +51,7 @@ export const FeaturedBuilds = ({ builds }) => {
           {builds.slice(0, NUM_FEATURED_BUILDS).map((build, index) => (
             <FeaturedBuildWrapper isBuildOpened={openedBuild === index} onClick={() => openBuildPreview(index)} key={build.id}>
               <FeaturedBuildPreview />
-              <FeaturedBuildImage src={build.bannerImage.sizes.tablet.url} />
+              <FeaturedBuildImage src={build.bannerImage.sizes.tablet.url} alt={build.bannerImage.alt} />
             </FeaturedBuildWrapper>
           ))}
           </FeaturedBuildPreviewArea>

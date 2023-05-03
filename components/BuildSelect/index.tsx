@@ -13,7 +13,7 @@ export const BuildSelect = ({ builds }) => {
       <GridContainer>
         {builds.map((build, index) => (
           <ImageContainer key={build.id} onClick={() => handleClick(index)}>
-            <Image src={build.bannerImage.sizes.thumbnail.url} alt={build.name} />
+            <Image src={build.bannerImage.sizes.thumbnail.url} alt={build.bannerImage.alt} />
             <Overlay visible={selectedIndex === index}>{build.name}</Overlay>
           </ImageContainer>
         ))}

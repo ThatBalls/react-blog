@@ -6,14 +6,19 @@ export const FeaturedTools = ({ tools }) => {
       <FeaturedToolsContainer>
         <FeaturedToolPreviewArea>
           <FeaturedToolWrapper>
-            <FeaturedToolImage src={tools.bannerImage.sizes.tablet.url} />
+            <FeaturedToolImage
+              src={tools.bannerImage.sizes.tablet.url}
+              alt={tools.bannerImage.alt}
+              fill
+              sizes="(max-width: 768px) 100vw,
+                80vw" />
           </FeaturedToolWrapper>
-          </FeaturedToolPreviewArea>
-          <FeaturedToolDescriptionWrapper>
-            <h1>Dice Calculator</h1>
-            <p>Crunch some numbers</p>
-            <FeaturedToolLinkButton href={`/tools/dice`}>Try it!</FeaturedToolLinkButton>
-          </FeaturedToolDescriptionWrapper>
+        </FeaturedToolPreviewArea>
+        <FeaturedToolDescriptionWrapper>
+          <h1>Dice Calculator</h1>
+          <p>Crunch some numbers</p>
+          <FeaturedToolLinkButton href={`/tools/dice`}>Try it!</FeaturedToolLinkButton>
+        </FeaturedToolDescriptionWrapper>
       </FeaturedToolsContainer>
     </>
   );
