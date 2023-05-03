@@ -1,0 +1,1 @@
+export { DiceTool } from "./Dice";

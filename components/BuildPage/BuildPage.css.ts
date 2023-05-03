@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "styles/vars.css";
 
 export const BuildPageContainer = styled.main`
   padding: 0;
@@ -7,6 +8,7 @@ export const BuildPageContainer = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${COLORS.PRIMARY};
 `;
 
 export const BannerWrapper = styled.div`

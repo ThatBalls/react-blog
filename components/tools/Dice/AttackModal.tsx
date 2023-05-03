@@ -3,13 +3,13 @@ import { Form, Button, Modal, InputGroup, FormControl, Alert } from 'react-boots
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, ATTACK_DEFAULTS } from './constants';
 
-export default function AttackModal({
+export const AttackModal = ({
   showAttackModal,
   handleAttackClose,
   handleAddAttack,
   editIndex,
   initialValues
-}) {
+}) => {
   const [attackName, setAttackName] = useState(initialValues.attackName);
   const [attackBonus, setAttackBonus] = useState(initialValues.attackBonus);
   const [targetAc, setTargetAc] = useState(initialValues.targetAc);
@@ -101,7 +101,7 @@ export default function AttackModal({
       <Modal.Title>Add Attack</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <InputGroup className="mb-3" controlId="formAttackName">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Attack Name</InputGroup.Text>
         <FormControl
           type="text"
@@ -109,7 +109,7 @@ export default function AttackModal({
           onChange={(event) => setAttackName(event.target.value)} 
           placeholder="Enter Name (optional)" />
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formAttackBonus">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Attack Bonus</InputGroup.Text>
         <FormControl
           type="text"
@@ -120,7 +120,7 @@ export default function AttackModal({
           Specify + or -
         </InputGroup.Text>
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formAttackDamage">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Attack Damage</InputGroup.Text>
         <FormControl
           type="text"
@@ -128,7 +128,7 @@ export default function AttackModal({
           onChange={(event) => setAttackDamage(event.target.value)} 
           placeholder="Enter damage" />
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formAttackBonus">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Target AC</InputGroup.Text>
         <FormControl
           type="text"
@@ -136,7 +136,7 @@ export default function AttackModal({
           onChange={(event) => setTargetAc(event.target.value)}
           placeholder="Enter AC" />
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formAdvantageRadio" value={modifier}>
+      <InputGroup className="mb-3">
         <Form.Check inline
           id='attackDisadvantage'
           name="advantageGroup"

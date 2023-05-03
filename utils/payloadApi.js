@@ -112,3 +112,13 @@ export async function getPage(title) {
     return err;
   }
 }
+
+// TODO: When we add more tools, get them here instead of just the tools page
+export async function getFeaturedTools() {
+  try {
+    return (await getPage("tools"));
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+}

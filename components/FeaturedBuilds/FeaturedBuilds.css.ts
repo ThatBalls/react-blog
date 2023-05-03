@@ -28,7 +28,7 @@ export const FeaturedBuildPreview = styled.div`
   }
 `;
 
-export const FeaturedBuildImage = styled.img<{ buildImage }>`
+export const FeaturedBuildImage = styled.img`
   transform: skew(20deg);
   position: absolute;
   left: -40px;
@@ -144,7 +144,6 @@ export const FeaturedBuildsContainer = styled.section`
   width: 100%;
   height: 400px;
   overflow: hidden;
-  background-color: ${COLORS.PRIMARY};
   padding-left: 80px;
   position: relative;
 `;
@@ -153,7 +152,7 @@ export const FeaturedBuildDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: ${COLORS.BACKGROUND};
+  color: ${COLORS.PRIMARY};
   padding: 1rem 5rem 1rem 5rem;
 `;
 

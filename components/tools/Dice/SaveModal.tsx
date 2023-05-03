@@ -3,13 +3,13 @@ import { Form, Button, Modal, InputGroup, FormControl, Alert } from 'react-boots
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, SAVE_DEFAULTS } from './constants';
 
-export default function SaveModal({
+export const SaveModal = ({
   showSaveModal,
   handleSaveClose,
   handleAddSave,
   editIndex,
   initialValues
-}) {
+}) => {
   const [saveName, setSaveName] = useState(initialValues.saveName);
   const [saveDc, setSaveDc] = useState(initialValues.saveDc);
   const [saveBonus, setSaveBonus] = useState(initialValues.saveBonus);
@@ -99,7 +99,7 @@ export default function SaveModal({
       <Modal.Title>Add Target Save</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <InputGroup className="mb-3" controlId="formSaveName">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Save Name</InputGroup.Text>
         <FormControl
           type="text"
@@ -107,7 +107,7 @@ export default function SaveModal({
           onChange={(event) => setSaveName(event.target.value)}
           placeholder="Enter Save Name (Optional)" />
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formSave">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Save DC</InputGroup.Text>
         <FormControl
           type="text"
@@ -115,7 +115,7 @@ export default function SaveModal({
           onChange={(event) => setSaveDc(event.target.value)}
           placeholder="Enter DC" />
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formSaveDamage">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Attack Damage</InputGroup.Text>
         <FormControl
           type="text"
@@ -123,7 +123,7 @@ export default function SaveModal({
           onChange={(event) => setSaveDamage(event.target.value)} 
           placeholder="Enter damage" />
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formSaveBonus">
+      <InputGroup className="mb-3">
         <InputGroup.Text>Target Save Bonus</InputGroup.Text>
         <FormControl
           type="text"
@@ -134,7 +134,7 @@ export default function SaveModal({
           Specify + or -
         </InputGroup.Text>
       </InputGroup>
-      <InputGroup className="mb-3" controlId="formAdvantageCheck" value={modifier}>
+      <InputGroup className="mb-3">
         <Form.Check inline
           id='saveDisadvantage'
           name="advantageGroup"

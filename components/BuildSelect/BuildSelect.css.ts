@@ -5,9 +5,10 @@ import { COLORS } from "styles/vars.css";
 
 export const BuildSelectContainer = styled.div`
   display: grid;
-  background-color: ${COLORS.PRIMARY};
+  background-color: ${COLORS.BACKGROUND};
   grid-template-columns: 75% 25%;
   padding: 1rem;
+  grid-template-rows: 1fr 1fr;
 `;
 
 export const GridContainer = styled.div`
@@ -50,8 +51,7 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
-  background-color: ${COLORS.PRIMARY};
-  color: ${COLORS.BACKGROUND};
+  color: ${COLORS.PRIMARY};
 `;
 
 export const InfoHeader = styled.h2`

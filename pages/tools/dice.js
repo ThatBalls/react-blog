@@ -2,13 +2,14 @@ import {useState} from 'react';
 import Head from 'next/head';
 import { Button, Alert, Card, Stack, Row } from 'react-bootstrap';
 import Dice from 'dice-notation-js';
-import AttackModal from 'components/tools/dice/attackModal';
-import SaveModal from 'components/tools/dice/saveModal';
-import { TYPES, ATTACK_DEFAULTS, SAVE_DEFAULTS } from 'components/tools/dice/constants';
+import AttackModal from 'components/tools/Dice/AttackModal';
+import SaveModal from 'components/tools/Dice/SaveModal';
+import { TYPES, ATTACK_DEFAULTS, SAVE_DEFAULTS } from 'components/tools/Dice/constants';
+import { DiceTool } from "components/tools";
 import styles from './Dice.module.css';
 
 export default function DiceCalculator() {
-  const [showAttackModal, setShowAttackModal] = useState(false);
+/*   const [showAttackModal, setShowAttackModal] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [attackResult, setAttackResult] = useState(null);
   const [saveResult, setSaveResult] = useState(null);
@@ -57,7 +58,7 @@ export default function DiceCalculator() {
     newResult.splice(resultIndex, 1);
     setEntireResult(newResult);
   };
-  
+   */
   return (
     <div className={styles.container}>
       <Head>
@@ -69,7 +70,8 @@ export default function DiceCalculator() {
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Stack gap={3}>
+      <DiceTool />
+      {/* <Stack gap={3}>
         <Stack direction='horizontal' gap={3} className={styles.buttonRow}>
           <Button variant="primary" size='lg' onClick={() => setShowAttackModal(true)}>Add Attack</Button>
           <Button variant="primary" size='lg' onClick={() => setShowSaveModal(true)}>Add Target Save</Button>
@@ -115,7 +117,7 @@ export default function DiceCalculator() {
           handleAddSave={handleAddResult}
           editIndex={editIndex}
           initialValues={saveResult || SAVE_DEFAULTS}/>
-      </Stack>
+        </Stack>*/}
       {/* <Tabs defaultActiveKey="attack" id="roll-tabs" className="mb-3">
         <Tab eventKey="attack" title="Attack Roll">
           <Form onSubmit={handleAttackSubmit}>

@@ -1,8 +1,6 @@
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
-import { debounce } from "lodash";
 import Link from 'next/link';
 import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildLinkButton } from './FeaturedBuilds.css'
-import build from "next/dist/build";
 
 const NUM_FEATURED_BUILDS = 3;
 const AUTO_ADVANCE_TIME = 5000;
@@ -52,8 +50,8 @@ export const FeaturedBuilds = ({ builds }) => {
         <FeaturedBuildPreviewArea>
           {builds.slice(0, NUM_FEATURED_BUILDS).map((build, index) => (
             <FeaturedBuildWrapper isBuildOpened={openedBuild === index} onClick={() => openBuildPreview(index)} key={build.id}>
-                <FeaturedBuildPreview />
-                <FeaturedBuildImage src={build.bannerImage.sizes.tablet.url} />
+              <FeaturedBuildPreview />
+              <FeaturedBuildImage src={build.bannerImage.sizes.tablet.url} />
             </FeaturedBuildWrapper>
           ))}
           </FeaturedBuildPreviewArea>
