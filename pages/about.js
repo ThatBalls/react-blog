@@ -2,7 +2,7 @@ import Head from 'next/head'
     
 export default function About() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>About - My Blog</title>
         <meta name="description" content="The story behind My Blog!" />

@@ -2,7 +2,7 @@ import Head from 'next/head'
     
 export default function Diary({ journalId, title }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>{ title } - My Journals</title>
         <meta name="description" content={`Learn more about ${title}`} />
