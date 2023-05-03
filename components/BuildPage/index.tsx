@@ -8,7 +8,7 @@ export const BuildPage = ({ build }) => {
   
   return (<BuildPageContainer>
     <BannerWrapper>
-      <img src={bannerImage.sizes.tablet.url}></img>
+      <img src={bannerImage.sizes.tablet.url} alt={bannerImage.alt}></img>
       <h1>{ title }</h1>
     </BannerWrapper>
     <ContentWrapper>

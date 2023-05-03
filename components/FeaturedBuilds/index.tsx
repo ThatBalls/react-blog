@@ -16,7 +16,7 @@ export const FeaturedBuilds = ({ builds }) => {
     }, AUTO_ADVANCE_TIME);
     setBuildChangeInterval(id);
     return id;
-  }, [openedBuild, setOpenedBuild, setBuildChangeInterval]);
+  }, [setOpenedBuild, setBuildChangeInterval]);
 
   useEffect(() => {
     buildRef.current = openedBuild;
@@ -25,7 +25,7 @@ export const FeaturedBuilds = ({ builds }) => {
   useEffect(() => {
     const id = createInterval();
     return () => clearInterval(id);
-  }, []);
+  }, [createInterval]);
 
   const openBuildPreview = (index: number) => {
     setOpenedBuild(index);
@@ -42,7 +42,7 @@ export const FeaturedBuilds = ({ builds }) => {
   const buildData = useMemo(() => openedBuild != null ? builds[openedBuild] : {
     title: "Featured Builds",
     shortDescription: "Click a build to see details"
-  }, [openedBuild]);
+  }, [openedBuild, builds]);
 
   return (
     <>
