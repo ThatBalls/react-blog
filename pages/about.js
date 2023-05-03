@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
     
 export default function About() {
   return (
@@ -13,8 +12,8 @@ export default function About() {
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main>
+        <h1>
           About My Blog
         </h1>
       </main>

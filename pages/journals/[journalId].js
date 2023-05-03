@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css';
     
 export default function Diary({ journalId, title }) {
   return (
@@ -13,8 +12,8 @@ export default function Diary({ journalId, title }) {
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1 className={styles.title}>{ title }</h1>
+      <main>
+        <h1>{ title }</h1>
         <p>Journal ID: { journalId }</p>
       </main>
     </div>
