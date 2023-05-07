@@ -10,8 +10,7 @@ export const FeaturedTools = ({ tools }) => {
               src={tools.bannerImage.sizes.tablet.url}
               alt={tools.bannerImage.alt}
               fill
-              sizes="(max-width: 768px) 100vw,
-                80vw" />
+              priority />
           </FeaturedToolWrapper>
         </FeaturedToolPreviewArea>
         <FeaturedToolDescriptionWrapper>

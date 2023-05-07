@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const HeroContainer = styled.div`
-  height: 20rem;
+  height: 50vh;
   width: 100%;
+  position: relative;
 `;
 
 export const HeroImg = styled.div`
@@ -11,6 +13,10 @@ export const HeroImg = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+`;
+
+export const HeroImageElement = styled(Image)`
+  object-fit: cover;
 `;
 
 export const HeroText = styled.div`

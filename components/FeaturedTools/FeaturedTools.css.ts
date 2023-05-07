@@ -4,34 +4,55 @@ import Image from "next/image";
 import { COLORS } from "styles/vars.css";
 
 export const FeaturedToolsContainer = styled.section`
-  display: grid;
-  grid-template-columns: 60% 40%;
-  justify-content: flex-end;
+  display: flex;
   width: 100%;
   height: 400px;
   overflow: hidden;
   position: relative;
   background-color: ${COLORS.TERTIARY};
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    min-width: 350px;
+
+    & > * {
+      flex: 1 1 0;
+    }
+  }
 `;
 
 export const FeaturedToolPreviewArea = styled.div`
   display: flex;
+  width: 60%;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const FeaturedToolWrapper = styled.div`
-  overflow: hidden;
   width: 100%;
-  height: 100%;
-  z-index: 5;
   position: relative;
 `;
 
 export const FeaturedToolDescriptionWrapper = styled.div`
   display: flex;
+  width: 40%;
   flex-direction: column;
   justify-content: space-between;
   color: ${COLORS.PRIMARY};
   padding: 1rem 5rem 1rem 5rem;
+  max-width: 500px;
+  
+  h1 {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const FeaturedToolLinkButton = styled(Link)`
@@ -55,5 +76,5 @@ export const FeaturedToolLinkButton = styled(Link)`
 `;
 
 export const FeaturedToolImage = styled(Image)`
-  max-width: 800px;
+  object-fit: contain;
 `;

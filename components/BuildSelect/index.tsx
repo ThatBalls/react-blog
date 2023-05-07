@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { BuildSelectContainer, GridContainer, ImageContainer, Image, Overlay, InfoContainer, InfoHeader, InfoText, BuildLinkButton } from "./BuildSelect.css";
 
 export const BuildSelect = ({ builds }) => {
@@ -8,21 +8,25 @@ export const BuildSelect = ({ builds }) => {
     setSelectedIndex(index);
   };
 
+  const buildDetails = useMemo(() => selectedIndex != null ? builds[selectedIndex] : {
+    title: "Select a build",
+    shortDescription: ""
+  }, [selectedIndex, builds]);
+
   return (
     <BuildSelectContainer>
       <GridContainer>
         {builds.map((build, index) => (
           <ImageContainer key={build.id} onClick={() => handleClick(index)}>
-            <Image src={build.bannerImage.sizes.thumbnail.url} alt={build.bannerImage.alt} />
+            <Image src={build.bannerImage.sizes.thumbnail.url} alt={build.bannerImage.alt} priority />
             <Overlay visible={selectedIndex === index}>{build.name}</Overlay>
           </ImageContainer>
         ))}
       </GridContainer>
-      {selectedIndex != null && (
-        <InfoContainer>
-          <InfoHeader>{builds[selectedIndex].title}</InfoHeader>
-          <InfoText>{builds[selectedIndex].shortDescription}</InfoText>
-          <BuildLinkButton href={`/builds/${builds[selectedIndex].slug}`}>Read more</BuildLinkButton>
-        </InfoContainer>)}
+      <InfoContainer>
+        <InfoHeader>{buildDetails.title}</InfoHeader>
+        <InfoText>{buildDetails.shortDescription}</InfoText>
+        {selectedIndex != null ? <BuildLinkButton href={`/builds/${builds[selectedIndex].slug}`}>Read more</BuildLinkButton> : null}
+      </InfoContainer>
     </BuildSelectContainer>);
 };

@@ -52,6 +52,7 @@ export const DiceTool = () => {
   };
 
   const onDeleteClicked = resultIndex => {
+    console.log(resultIndex);
     const newResult = entireResult.slice();
     newResult.splice(resultIndex, 1);
     setEntireResult(newResult);
@@ -72,7 +73,7 @@ export const DiceTool = () => {
         {entireResult.map((resultObj, i) => {
           const title = resultObj.attackName || resultObj.saveName || (resultObj.type === TYPES.ATTACK ? `Attack ${i + 1}` : `Save ${i + 1}`)
           return (
-            <Card key={`${resultObj.chanceToHit}-${resultObj.averageDamage}-${resultObj.numberOfAttacks}`}>
+            <Card key={`card-${i}`}>
               <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>

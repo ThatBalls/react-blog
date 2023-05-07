@@ -1,14 +1,14 @@
 import React from "react";
 import { slateToHtml, payloadSlateToDomConfig } from 'slate-serializers'
 import parse from 'html-react-parser';
-import { BuildPageContainer, BannerWrapper, ContentWrapper, SplitRow, LevelTable } from "./BuildPage.css";
+import { BuildPageContainer, BannerWrapper, BannerImage, ContentWrapper, SplitRow, LevelTable } from "./BuildPage.css";
 
 export const BuildPage = ({ build }) => {
   const { title, characterConcept, levelTable, levelBlocks, analysis, bannerImage } = build;
   
   return (<BuildPageContainer>
     <BannerWrapper>
-      <img src={bannerImage.sizes.tablet.url} alt={bannerImage.alt}></img>
+      <BannerImage src={bannerImage.sizes.tablet.url} alt={bannerImage.alt} fill priority/>
       <h1>{ title }</h1>
     </BannerWrapper>
     <ContentWrapper>

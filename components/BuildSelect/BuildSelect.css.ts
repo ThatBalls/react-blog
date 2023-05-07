@@ -4,22 +4,28 @@ import styled from "styled-components";
 import { COLORS } from "styles/vars.css";
 
 export const BuildSelectContainer = styled.div`
-  display: grid;
+  display: flex;
   background-color: ${COLORS.BACKGROUND};
-  grid-template-columns: 75% 25%;
   padding: 1rem;
-  grid-template-rows: 1fr 1fr;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
   cursor: pointer;
+  flex-grow: 3;
+  max-width: 350px;
 `;
 
 export const Image = styled.img`
@@ -49,9 +55,22 @@ export const Overlay = styled.div`
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: sticky;
   justify-content: space-between;
   padding: 1rem;
   color: ${COLORS.PRIMARY};
+  flex-grow: 1;
+  background-color: ${COLORS.BACKGROUND};
+  bottom: 0;
+  left: -1px;
+  top: auto;
+  width: 100vw;
+  text-align: center;
+  align-items: center;
+
+  & > * {
+    max-width: 400px;
+  }
 `;
 
 export const InfoHeader = styled.h2`

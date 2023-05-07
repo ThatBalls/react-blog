@@ -80,6 +80,7 @@ export const AttackModal = ({
 
   const handleAnalyzeAttack = event => {
     try {
+      console.log(calculateAttack());
       event.preventDefault();
       setAttackResult(calculateAttack());
     } catch(err) {

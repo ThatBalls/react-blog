@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from 'next/link';
+import Image from "next/image";
 import { COLORS } from "styles/vars.css";
 
 export const EXPAND_TIME = 0.5;
@@ -61,7 +62,7 @@ export const FeaturedBuildLink = styled(Link)`
 
 export const FeaturedBuildWrapper = styled.div<{isBuildOpened: boolean}>`
   display: flex;
-  flex-grow: ${({isBuildOpened}) => isBuildOpened ? "2" : "1"};
+  flex-grow: ${({isBuildOpened}) => isBuildOpened ? "3" : "1"};
   height: 100%;
   transform: skew(-20deg);
   animation: build-close ${EXPAND_TIME}s ease;
@@ -91,13 +92,13 @@ export const FeaturedBuildWrapper = styled.div<{isBuildOpened: boolean}>`
       flex-grow: 1;
     }
     100% {
-      flex-grow: 2;
+      flex-grow: 3;
     }
   }
 
   @keyframes build-close {
     0% {
-      flex-grow: 2;
+      flex-grow: 3;
     }
     100% {
       flex-grow: 1;
@@ -138,14 +139,27 @@ export const FeaturedBuildPreviewArea = styled.div`
 `;
 
 export const FeaturedBuildsContainer = styled.section`
+  width: 100%;
+  height: 400px;
+
+  @media (max-width: 1024px) {
+    max-width: 400px;
+    min-width: 350px;
+  }
+`;
+
+export const FeaturedBuildsLarge = styled.div`
   display: grid;
   grid-template-columns: 60% 40%;
   justify-content: flex-end;
   width: 100%;
-  height: 400px;
+  height: 100%;
   overflow: hidden;
   padding-left: 80px;
   position: relative;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const FeaturedBuildDescriptionWrapper = styled.div`
@@ -154,6 +168,56 @@ export const FeaturedBuildDescriptionWrapper = styled.div`
   justify-content: space-between;
   color: ${COLORS.PRIMARY};
   padding: 1rem 5rem 1rem 5rem;
+  max-width: 500px;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1rem 2rem 1rem 2rem;
+  }
+`;
+
+export const FeaturedBuildsSmall = styled.div`
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-wrapper,
+  .carousel,
+  .carousel > .slider-wrapper,
+  .carousel > .slider-wrapper > .slider {
+    height: 100%;
+    width: 100%;
+  }
+
+  & > * {
+    flex: 1 1 0;
+  }
+`;
+
+export const FeaturedImageWrapper = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+export const SmallFeaturedBuildImage = styled(Image)`
+  object-fit: contain;
+`;
+
+export const FeaturedBuildCarouselItem = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const FeaturedBuildCarouselImage = styled(Image)`
 `;
 
 export const FeaturedBuildLinkButton = styled(Link)`
