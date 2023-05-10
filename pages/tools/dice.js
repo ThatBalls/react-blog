@@ -66,7 +66,7 @@ export default function DiceCalculator() {
         <meta name="description" content={`Calculate all your dice rolls`} />
         <meta property="og:title" content={`Dice Calculator`} />
         <meta property="og:description" content={`Calculate all your dice rolls`} />
-        <meta property="og:url" content={`https://dire-dice.com/tools/dice`} />
+        <meta property="og:url" content={`https://diredice.com/tools/dice`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

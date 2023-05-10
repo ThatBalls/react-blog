@@ -5,13 +5,13 @@ import { COLORS } from "styles/vars.css";
 
 export const BrewListContainer = styled.section`
   width: 100%;
-  height: 400px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const Brew = styled.div`
-  width: 100%;
-  height: 100%;
+  height: 400px;
   position: relative;
   display: flex;
   flex-direction: column;

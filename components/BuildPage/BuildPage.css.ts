@@ -62,8 +62,16 @@ export const SplitRow = styled.div`
   flex-direction: row;
   gap: 1rem;
 
+  div {
+    width: 50%;
+  }
+
   @media (max-width: 1024px) {
     flex-direction: column;
+    
+    div {
+      width: 100%;
+    }
   }
 `;
 

@@ -11,7 +11,7 @@ export default function Build({ targetBuild }) {
         <meta name="description" content={targetBuild.metaDescription} />
         <meta property="og:title" content={targetBuild.metaTitle} />
         <meta property="og:description" content={targetBuild.metaDescription} />
-        <meta property="og:url" content={`https://dire-dice.com/builds/${targetBuild.slug}`} />
+        <meta property="og:url" content={`https://diredice.com/builds/${targetBuild.slug}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

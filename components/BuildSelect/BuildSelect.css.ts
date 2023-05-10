@@ -64,7 +64,7 @@ export const InfoContainer = styled.div`
   bottom: 0;
   left: -1px;
   top: auto;
-  width: 100vw;
+  width: 100%;
   text-align: center;
   align-items: center;
 
