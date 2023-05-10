@@ -14,7 +14,7 @@ export const BrewList = ({ brews }) => {
           <BrewDescriptionWrapper>
             <h1>{brew.title}</h1>
             <p>{brew.description}</p>
-            <BrewLinkButton href={`/brew/${brew.slug}`}>Read more</BrewLinkButton>
+            <BrewLinkButton href={`/brew/${brew.slug}`}>Brew!</BrewLinkButton>
           </BrewDescriptionWrapper>
         </Brew>)
       )}
