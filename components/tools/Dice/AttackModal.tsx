@@ -80,7 +80,6 @@ export const AttackModal = ({
 
   const handleAnalyzeAttack = event => {
     try {
-      console.log(calculateAttack());
       event.preventDefault();
       setAttackResult(calculateAttack());
     } catch(err) {
@@ -185,6 +184,11 @@ export const AttackModal = ({
           placeholder="Enter Critical Chance" />
       </InputGroup>
       {validationError && <Alert variant='danger'>{validationError.message}</Alert>}
+      {attackResult && <Alert variant='primary'>
+        <p>Chance to hit: {attackResult.chanceToHit}</p>
+        <p>Average attack damage: {attackResult.averageDamage}</p>
+        <p>Total Average Damage: {attackResult.averageDamage * attackResult.numberOfAttacks}</p>
+      </Alert>}
     </Modal.Body>
     <Modal.Footer>
       <Button variant="secondary" onClick={handleAnalyzeAttack}>

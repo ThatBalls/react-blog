@@ -1,4 +1,5 @@
 import axios from "axios";
+import { get } from "lodash";
 import qs from "qs";
 
 const api = axios.create({
@@ -117,6 +118,15 @@ export async function getPage(title) {
 export async function getFeaturedTools() {
   try {
     return (await getPage("tools"));
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+}
+
+export async function getBrews() {
+  try {
+    return (await api.get("brews")).data.docs;
   } catch (err) {
     console.log(err);
     return err;

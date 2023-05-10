@@ -1,7 +1,4 @@
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
-import Image from "next/image";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildLinkButton, FeaturedBuildsLarge, FeaturedBuildsSmall, FeaturedBuildCarouselItem, FeaturedBuildCarouselImage, SmallFeaturedBuildImage, FeaturedImageWrapper } from './FeaturedBuilds.css'
 
 const NUM_FEATURED_BUILDS = 3;
@@ -9,25 +6,24 @@ const AUTO_ADVANCE_TIME = 5000;
 
 export const FeaturedBuilds = ({ builds }) => {
   const [openedBuild, setOpenedBuild] = useState<number>(0);
-  const [buildChangeInterval, setBuildChangeInterval] = useState(null);
-  const [smallBuildData, setSmallBuildData] = useState(builds[0]);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const buildRef = useRef(openedBuild);
 
   const createInterval = useCallback(() => {
     const id = setInterval(() => {
+      if (isMouseOver) return;
       setOpenedBuild((buildRef.current + 1) % 3);
     }, AUTO_ADVANCE_TIME);
-    setBuildChangeInterval(id);
     return id;
-  }, [setOpenedBuild, setBuildChangeInterval]);
+  }, [isMouseOver]);
 
   useEffect(() => {
     buildRef.current = openedBuild;
   }, [openedBuild]);
 
   useEffect(() => {
-    createInterval();
-    return () => clearInterval(buildChangeInterval);
+    const id = createInterval();
+    return () => clearInterval(id);
   }, [createInterval]);
 
   const openBuildPreview = (index: number) => {
@@ -35,11 +31,11 @@ export const FeaturedBuilds = ({ builds }) => {
   };
 
   const enterBuildPreview = () => {
-    clearInterval(buildChangeInterval);
+    setIsMouseOver(true);
   };
 
   const leaveBuildPreview = () => {
-    createInterval();
+    setIsMouseOver(false);
   };
 
   const largeBuildData = useMemo(() => openedBuild != null ? builds[openedBuild] : {
@@ -72,26 +68,6 @@ export const FeaturedBuilds = ({ builds }) => {
               fill
               priority />
           </FeaturedImageWrapper>
-          {/* <Carousel
-            className="carousel-wrapper"
-            showThumbs={false}
-            showStatus={false}
-            autoPlay
-            stopOnHover
-            infiniteLoop
-            interval={AUTO_ADVANCE_TIME}
-            onChange={(index) => setSmallBuildData(builds[index])}>
-            {builds.slice(0, NUM_FEATURED_BUILDS).map((build, index) => (
-              <FeaturedBuildCarouselItem key={build.id}>
-                <FeaturedBuildCarouselImage
-                  src={build.bannerImage.sizes.tablet.url}
-                  alt={build.bannerImage.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw,
-                    80vw" />
-              </FeaturedBuildCarouselItem>
-            ))}
-          </Carousel> */}
           <FeaturedBuildDescriptionWrapper>
             <h1>Specialized Builds</h1>
             <p>Check out some fun and unique character builds for Dungeons and Dragons</p>

@@ -14,4 +14,6 @@ export const LayoutContainer = styled.div`
 
 export const MainContent = styled.div`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
