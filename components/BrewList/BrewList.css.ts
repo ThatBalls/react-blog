@@ -12,6 +12,7 @@ export const BrewListContainer = styled.section`
 
 export const Brew = styled.div`
   height: 400px;
+  width: 350px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -28,7 +29,7 @@ export const BrewDescriptionWrapper = styled.div`
   justify-content: space-between;
   color: ${COLORS.PRIMARY};
   padding: 1rem 2rem 1rem 2rem;
-  max-width: 500px;
+  text-align: center;
 
   h1 {
     font-size: 2rem;
