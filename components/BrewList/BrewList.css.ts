@@ -27,15 +27,11 @@ export const BrewDescriptionWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   color: ${COLORS.PRIMARY};
-  padding: 1rem 5rem 1rem 5rem;
+  padding: 1rem 2rem 1rem 2rem;
   max-width: 500px;
 
   h1 {
     font-size: 2rem;
-  }
-
-  @media (max-width: 1024px) {
-    padding: 1rem 2rem 1rem 2rem;
   }
 `;
 
