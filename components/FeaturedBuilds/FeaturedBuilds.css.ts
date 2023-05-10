@@ -165,7 +165,7 @@ export const FeaturedBuildsLarge = styled.div`
 export const FeaturedBuildDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   color: ${COLORS.PRIMARY};
   padding: 1rem 5rem 1rem 5rem;
   max-width: 500px;
