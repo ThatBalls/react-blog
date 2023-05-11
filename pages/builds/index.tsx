@@ -10,7 +10,7 @@ export default function BuildsPage({ coverImg, buildList, dataHost }) {
         <meta name="description" content='Build List' />
         <meta property="og:title" content='Build List' />
         <meta property="og:description" content='Build List' />
-        <meta property="og:url" content={`https://diredice.com/builds`} />
+        <meta property="og:url" content={`https://www.diredice.com/builds`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

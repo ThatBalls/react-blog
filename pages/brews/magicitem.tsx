@@ -9,7 +9,7 @@ export default function Subclass() {
         <meta name="description" content={`Generate new magic items`} />
         <meta property="og:title" content={`Magic Item Generator`} />
         <meta property="og:description" content={`Generate new magic items`} />
-        <meta property="og:url" content={`https://diredice.com/brew/magicitem`} />
+        <meta property="og:url" content={`https://www.diredice.com/brews/magicitem`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

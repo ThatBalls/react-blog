@@ -1,4 +1,5 @@
-import { BrewListContainer, Brew, BrewDescriptionWrapper, BrewImage, BrewImageWrapper, BrewLinkButton } from "./BrewList.css";
+import { LinkButton } from "patterns";
+import { BrewListContainer, Brew, BrewDescriptionWrapper, BrewImage, BrewImageWrapper } from "./BrewList.css";
 
 export const BrewList = ({ brews }) => {
   return (
@@ -14,7 +15,7 @@ export const BrewList = ({ brews }) => {
           <BrewDescriptionWrapper>
             <h1>{brew.title}</h1>
             <p>{brew.description}</p>
-            <BrewLinkButton href={`/brew/${brew.slug}`}>Brew!</BrewLinkButton>
+            <LinkButton href={`/brews/${brew.slug}`}>Brew!</LinkButton>
           </BrewDescriptionWrapper>
         </Brew>)
       )}

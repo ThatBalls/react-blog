@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
-import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildLinkButton, FeaturedBuildsLarge, FeaturedBuildsSmall, FeaturedBuildCarouselItem, FeaturedBuildCarouselImage, SmallFeaturedBuildImage, FeaturedImageWrapper } from './FeaturedBuilds.css'
+import { LinkButton } from "patterns";
+import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildsLarge, FeaturedBuildsSmall, FeaturedBuildCarouselItem, FeaturedBuildCarouselImage, SmallFeaturedBuildImage, FeaturedImageWrapper } from './FeaturedBuilds.css'
 
 const NUM_FEATURED_BUILDS = 3;
 const AUTO_ADVANCE_TIME = 5000;
@@ -58,7 +59,7 @@ export const FeaturedBuilds = ({ builds }) => {
           <FeaturedBuildDescriptionWrapper>
             <h1>{largeBuildData.title}</h1>
             <p>{largeBuildData.shortDescription}</p>
-            <FeaturedBuildLinkButton href={`/builds/${largeBuildData.slug}`}>Read more</FeaturedBuildLinkButton>
+            <LinkButton href={`/builds/${largeBuildData.slug}`}>Read more</LinkButton>
           </FeaturedBuildDescriptionWrapper>
         </FeaturedBuildsLarge>
         <FeaturedBuildsSmall>
@@ -71,7 +72,7 @@ export const FeaturedBuilds = ({ builds }) => {
           <FeaturedBuildDescriptionWrapper>
             <h1>Specialized Builds</h1>
             <p>Check out some fun and unique character builds for Dungeons and Dragons</p>
-            <FeaturedBuildLinkButton href={`/builds`}>Read more</FeaturedBuildLinkButton>
+            <LinkButton href={`/builds`}>Read more</LinkButton>
           </FeaturedBuildDescriptionWrapper>
         </FeaturedBuildsSmall>
       </FeaturedBuildsContainer>
