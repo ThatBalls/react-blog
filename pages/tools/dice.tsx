@@ -2,8 +2,6 @@ import {useState} from 'react';
 import Head from 'next/head';
 import { Button, Alert, Card, Stack, Row } from 'react-bootstrap';
 import Dice from 'dice-notation-js';
-import AttackModal from 'components/tools/Dice/AttackModal';
-import SaveModal from 'components/tools/Dice/SaveModal';
 import { TYPES, ATTACK_DEFAULTS, SAVE_DEFAULTS } from 'components/tools/Dice/constants';
 import { DiceTool } from "components/tools";
 import styles from './Dice.module.css';
@@ -66,7 +64,7 @@ export default function DiceCalculator() {
         <meta name="description" content={`Calculate all your dice rolls`} />
         <meta property="og:title" content={`Dice Calculator`} />
         <meta property="og:description" content={`Calculate all your dice rolls`} />
-        <meta property="og:url" content={`https://diredice.com/tools/dice`} />
+        <meta property="og:url" content={`https://www.diredice.com/tools/dice`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

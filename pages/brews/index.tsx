@@ -11,7 +11,7 @@ export default function BuildsPage({ coverImg, brews }) {
         <meta name="description" content='Homebrew Generators' />
         <meta property="og:title" content='Homebrew Generators' />
         <meta property="og:description" content='Homebrew Generators' />
-        <meta property="og:url" content={`https://diredice.com/brew`} />
+        <meta property="og:url" content={`https://www.diredice.com/brews`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

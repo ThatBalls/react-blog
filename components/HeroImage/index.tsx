@@ -5,7 +5,7 @@ import {
   HeroText
 } from './Hero.css';
 
-export const HeroImage = ({ coverImg, title, subtitle }) => {
+export const HeroImage = ({ coverImg, title = "", subtitle = "" }) => {
   return (
     <HeroContainer>
       {/* <HeroImg style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("${coverImg}")` }}> */}

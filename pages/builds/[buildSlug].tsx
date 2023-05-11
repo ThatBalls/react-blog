@@ -2,7 +2,7 @@ import React from "react";
 import Head from 'next/head'
 import { getBuild, getBuilds } from "utils/payloadApi";
 import { BuildPage } from "components"
-    
+
 export default function Build({ targetBuild }) {
   return (
     <div>
@@ -11,7 +11,7 @@ export default function Build({ targetBuild }) {
         <meta name="description" content={targetBuild.metaDescription} />
         <meta property="og:title" content={targetBuild.metaTitle} />
         <meta property="og:description" content={targetBuild.metaDescription} />
-        <meta property="og:url" content={`https://diredice.com/builds/${targetBuild.slug}`} />
+        <meta property="og:url" content={`https://www.diredice.com/builds/${targetBuild.slug}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -20,7 +20,7 @@ export default function Build({ targetBuild }) {
   )
 }
 
-export async function getStaticProps({ params = {} } = {}) {
+export async function getStaticProps({ params = { buildSlug: "" } }) {
   const targetBuild = (await getBuild(params.buildSlug));
   return {
     props: {

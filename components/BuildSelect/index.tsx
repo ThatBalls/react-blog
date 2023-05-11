@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { BuildSelectContainer, GridContainer, ImageContainer, Image, Overlay, InfoContainer, InfoHeader, InfoText, BuildLinkButton } from "./BuildSelect.css";
+import { LinkButton } from "patterns";
+import { BuildSelectContainer, GridContainer, ImageContainer, Image, Overlay, InfoContainer, InfoHeader, InfoText } from "./BuildSelect.css";
 
 export const BuildSelect = ({ builds }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -26,7 +27,7 @@ export const BuildSelect = ({ builds }) => {
       <InfoContainer>
         <InfoHeader>{buildDetails.title}</InfoHeader>
         <InfoText>{buildDetails.shortDescription}</InfoText>
-        {selectedIndex != null ? <BuildLinkButton href={`/builds/${builds[selectedIndex].slug}`}>Read more</BuildLinkButton> : null}
+        {selectedIndex != null ? <LinkButton href={`/builds/${builds[selectedIndex].slug}`}>Read more</LinkButton> : null}
       </InfoContainer>
     </BuildSelectContainer>);
 };

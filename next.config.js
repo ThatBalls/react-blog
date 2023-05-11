@@ -15,6 +15,6 @@ module.exports = {
   images: { 
     domains: [`${process.env.PAYLOAD_HOST}`],
     loader: "custom",
-    loaderFile: "./utils/imageLoader.js",
+    loaderFile: "./utils/imageLoader.tsx",
   },
 }

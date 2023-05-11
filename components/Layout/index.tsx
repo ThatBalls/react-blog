@@ -25,7 +25,7 @@ export const Layout = ({ children }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink href="/brew">Brew</NavLink>
+            <NavLink href="/brews">Brews</NavLink>
             <NavLink href="/builds">Builds</NavLink>
             {/*<NavDropdown title="Journals" id="basic-nav-dropdown">
               <DropDownLink href="/journals/skt">{"Storm King's Thunder"}</DropDownLink>
