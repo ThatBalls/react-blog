@@ -13,19 +13,16 @@ const api = axios.create({
 export default api;
 
 export async function getBuilds() {
-/*   const query = {
+  const query = {
     status: {
       equals: "published"
     }
   };
   const stringifiedQuery = qs.stringify({
     where: query
-  }, { addQueryPrefix: true }); */
+  }, { addQueryPrefix: true });
   try {
-    //return (await api.get(`builds${stringifiedQuery}`)).data;
-    return (await api.get(`builds`)).data.docs.filter((build) => {
-      return build.status === "published";
-    });
+    return (await api.get(`builds${stringifiedQuery}`)).data.docs;
   } catch (err) {
     console.log(err);
     return err;
@@ -33,17 +30,26 @@ export async function getBuilds() {
 };
 
 export async function getBuild(slug) {
-/*   const query = {
-    slug: {
-      equals: slug
-    }
+  const query = {
+    and: [
+      {
+        slug: {
+          equals: slug
+        }
+      },
+      {
+        status: {
+          equals: "published"
+        }
+      }
+    ]
   };
   const stringifiedQuery = qs.stringify({
     where: query
-  }, { addQueryPrefix: true }); */
+  }, { addQueryPrefix: true });
   try {
-    //return (await api.get(`builds${stringifiedQuery}`)).data
-    return (await getBuilds()).find((build => build.slug === slug));
+    // This should only have one response
+    return (await api.get(`builds${stringifiedQuery}`)).data.docs[0] || null;
   } catch (err) {
     console.log(err);
     return err;
@@ -59,24 +65,28 @@ export async function getMedia() {
   }
 }
 
-// TODO: Update to use stringified query instead of filtering
 export async function getFeaturedBuilds() {
-  /*
+  
   const query = {
-    "tags.name": {
-      contains: "Featured Build",
-    }
+    and: [
+      {
+        "tags.name": {
+          contains: "Featured Build",
+        }
+      },
+      {
+        status: {
+          equals: "published"
+        }
+      }
+    ]
   };
   const stringifiedQuery = qs.stringify({
     where: query
   }, { addQueryPrefix: true });
-  */
+ 
   try {
-    //return (await api.get(`builds${stringifiedQuery}`)).data;
-    return (await getBuilds()).filter(
-      (build) => build.tags.map(
-        tag => tag.name.toLowerCase()
-      ).indexOf("featured build") > -1);
+    return (await api.get(`builds${stringifiedQuery}`)).data.docs;
   } catch (err) {
     console.log(err);
     return err;
@@ -92,22 +102,19 @@ export async function getPages() {
   }
 }
 
-
-// TODO: Update to use stringified query instead of filtering
 export async function getPage(title) {
-  /*
   const query = {
-    id: {
+    title: {
       like: title,
     }
   };
   const stringifiedQuery = qs.stringify({
     where: query
   }, { addQueryPrefix: true });
-  */
+ 
   try {
-    //return (await api.get(`pages${stringifiedQuery}`)).data;
-    return (await getPages()).docs.find((page) => page.title.toLowerCase() === title.toLowerCase());
+    // Should only have one response
+    return (await api.get(`pages${stringifiedQuery}`)).data.docs[0] || null;
   } catch (err) {
     console.log(err);
     return err;
@@ -127,6 +134,24 @@ export async function getFeaturedTools() {
 export async function getBrews() {
   try {
     return (await api.get("brews")).data.docs;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+}
+
+export async function getBrew(slug) {
+  const query = {
+    slug: {
+      equals: slug
+    }
+  };
+  const stringifiedQuery = qs.stringify({
+    where: query
+  }, { addQueryPrefix: true });
+  try {
+    // This should only have one response
+    return (await api.get(`brews${stringifiedQuery}`)).data.docs[0] || null;
   } catch (err) {
     console.log(err);
     return err;

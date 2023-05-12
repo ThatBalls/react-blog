@@ -5,7 +5,7 @@ import { getBrews } from 'utils/payloadApi';
 
 export default function BuildsPage({ coverImg, brews }) {
   return (
-    <div>
+    <>
       <Head>
         <title>Homebrew Generators</title>
         <meta name="description" content='Homebrew Generators' />
@@ -17,12 +17,12 @@ export default function BuildsPage({ coverImg, brews }) {
       </Head>
       <HeroImage coverImg={coverImg} />
       <BrewList brews={brews} />
-    </div>
+    </>
   )
 }
 
 export async function getStaticProps() {
-  const pageData = await getPage("brew");
+  const pageData = await getPage("brews");
   const brews = await getBrews();
   const dataHost = process.env.PAYLOAD_HOST;
   return {

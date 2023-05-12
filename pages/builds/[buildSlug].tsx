@@ -5,7 +5,7 @@ import { BuildPage } from "components"
 
 export default function Build({ targetBuild }) {
   return (
-    <div>
+    <>
       <Head>
         <title>{targetBuild.metaTitle}</title>
         <meta name="description" content={targetBuild.metaDescription} />
@@ -16,7 +16,7 @@ export default function Build({ targetBuild }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <BuildPage build={targetBuild} />
-    </div>
+    </>
   )
 }
 
