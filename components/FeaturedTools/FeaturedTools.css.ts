@@ -15,6 +15,7 @@ export const FeaturedToolsContainer = styled.section`
     align-items: center;
     max-width: 400px;
     min-width: 350px;
+    padding-top: 1rem;
 
     & > * {
       flex: 1 1 0;
