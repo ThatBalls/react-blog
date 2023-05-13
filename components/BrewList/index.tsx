@@ -5,7 +5,7 @@ export const BrewList = ({ brews }) => {
   return (
     <BrewListContainer>
       {brews.map(brew =>
-        (<Brew key={brew.title}>
+        (<Brew key={brew.title} href={`/brews/${brew.slug}`}>
           <BrewImageWrapper>
             <BrewImage src={brew.bannerImage.sizes.tablet.url}
               alt={brew.bannerImage.alt}
@@ -15,7 +15,6 @@ export const BrewList = ({ brews }) => {
           <BrewDescriptionWrapper>
             <h1>{brew.title}</h1>
             <p>{brew.description}</p>
-            <LinkButton href={`/brews/${brew.slug}`}>Brew!</LinkButton>
           </BrewDescriptionWrapper>
         </Brew>)
       )}

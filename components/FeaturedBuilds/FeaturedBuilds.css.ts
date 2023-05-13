@@ -185,6 +185,7 @@ export const FeaturedBuildsSmall = styled.div`
   height: 100%;
   position: relative;
   @media (max-width: 1024px) {
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
