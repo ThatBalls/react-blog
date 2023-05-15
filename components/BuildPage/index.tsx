@@ -18,7 +18,6 @@ export const BuildPage = ({ build }) => {
         <div>
           {parse(slateToHtml(characterConcept, payloadSlateToDomConfig))}
         </div>
-        <InArticleAd />
         <div>
           <LevelTable>
             <thead>
@@ -38,6 +37,7 @@ export const BuildPage = ({ build }) => {
           </LevelTable>
         </div>
       </SplitRow>
+      <InArticleAd />
       {levelBlocks.map(block => {
         return (<React.Fragment key={block.title}>
           <h2>{block.title}</h2>
