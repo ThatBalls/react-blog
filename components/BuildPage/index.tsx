@@ -1,6 +1,7 @@
 import React from "react";
 import { slateToHtml, payloadSlateToDomConfig } from 'slate-serializers'
 import parse from 'html-react-parser';
+import { InArticleAd } from "components/Ads";
 import { BuildPageContainer, BannerWrapper, BannerImage, ContentWrapper, SplitRow, LevelTable } from "./BuildPage.css";
 
 export const BuildPage = ({ build }) => {
@@ -17,6 +18,7 @@ export const BuildPage = ({ build }) => {
         <div>
           {parse(slateToHtml(characterConcept, payloadSlateToDomConfig))}
         </div>
+        <InArticleAd />
         <div>
           <LevelTable>
             <thead>
