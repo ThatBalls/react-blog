@@ -2,6 +2,7 @@ import React from "react";
 import Head from 'next/head'
 import { getBrews, getBrew } from "utils/payloadApi";
 import { PicoWrapper } from "components/tools"
+import { GoogleAd } from "components/Ad";
 
 export default function Brew({ targetBrew }) {
   return (
@@ -16,6 +17,7 @@ export default function Brew({ targetBrew }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PicoWrapper url={targetBrew.externalUrl} />
+      <GoogleAd />
     </>
   )
 }
