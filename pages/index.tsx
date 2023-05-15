@@ -7,8 +7,8 @@ export default function Home({coverImg, featuredBuilds, featuredTools}) {
   return (
     <>
       <Head>
-        <title>Dire Dice Blog</title>
-        <meta name="description" content="Blog for Dungeons and Dragons and Coding" />
+        <title>Dire Dice</title>
+        <meta name="description" content="Tools and Builds for Dungeons and Dragons" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeroImage
