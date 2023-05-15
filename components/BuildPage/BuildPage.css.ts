@@ -40,7 +40,7 @@ export const BannerImage = styled(Image)`
 
 export const ContentWrapper = styled.div`
   padding: 0 2rem;
-  max-width: max(75vw, 300px);
+  max-width: max(75vw, 350px);
 
   h2 {
     text-align: center;

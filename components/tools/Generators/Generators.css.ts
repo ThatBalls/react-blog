@@ -21,4 +21,5 @@ export const PicoContainer = styled.iframe`
   border: none;
   width: 100%;
   flex-grow: 1;
+  min-height: 80vh;
 `;
