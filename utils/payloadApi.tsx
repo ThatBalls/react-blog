@@ -157,3 +157,13 @@ export async function getBrew(slug) {
     return err;
   }
 }
+
+// TODO: When we have a better design, get all featured brews here
+export async function getFeaturedBrews() {
+  try {
+    return (await getPage("brews"));
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+}
