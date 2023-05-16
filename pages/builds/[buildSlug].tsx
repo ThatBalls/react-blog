@@ -7,9 +7,9 @@ export default function Build({ targetBuild }) {
   return (
     <>
       <Head>
-        <title>{targetBuild.metaTitle}</title>
+        <title>{`Dire Dice - ${targetBuild.metaTitle}`}</title>
         <meta name="description" content={targetBuild.metaDescription} />
-        <meta property="og:title" content={targetBuild.metaTitle} />
+        <meta property="og:title" content={`Dire Dice - ${targetBuild.metaTitle}`} />
         <meta property="og:description" content={targetBuild.metaDescription} />
         <meta property="og:url" content={`https://www.diredice.com/builds/${targetBuild.slug}`} />
         <meta property="og:type" content="website" />

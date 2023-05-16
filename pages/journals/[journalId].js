@@ -6,7 +6,7 @@ export default function Diary({ journalId, title }) {
       <Head>
         <title>{ title } - My Journals</title>
         <meta name="description" content={`Learn more about ${title}`} />
-        <meta property="og:title" content={`${ title } - My Clothing Store`} />
+        <meta property="og:title" content={`${ title }`} />
         <meta property="og:description" content={`Learn more about ${title}`} />
         <meta property="og:url" content={`https://dire-dice.com/builds/${journalId}`} />
         <meta property="og:type" content="website" />
@@ -30,7 +30,7 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  const paths = [...new Array(5)].map((i, index) => {
+  const paths = [].map((i, index) => {
     return {
       params: {
         journalId: `${index + 1}`,
