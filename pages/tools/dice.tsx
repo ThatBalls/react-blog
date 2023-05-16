@@ -60,9 +60,9 @@ export default function DiceCalculator() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Dice Calculator</title>
+        <title>Dire Dice - Dice Calculator</title>
         <meta name="description" content={`Calculate all your dice rolls`} />
-        <meta property="og:title" content={`Dice Calculator`} />
+        <meta property="og:title" content={`Dire Dice - Dice Calculator`} />
         <meta property="og:description" content={`Calculate all your dice rolls`} />
         <meta property="og:url" content={`https://www.diredice.com/tools/dice`} />
         <meta property="og:type" content="website" />

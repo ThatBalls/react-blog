@@ -7,9 +7,9 @@ export default function BuildsPage({ coverImg, brews }) {
   return (
     <>
       <Head>
-        <title>Homebrew Generators</title>
+        <title>Dire Dice - Homebrew Generators</title>
         <meta name="description" content='Homebrew Generators' />
-        <meta property="og:title" content='Homebrew Generators' />
+        <meta property="og:title" content='Dire Dice - Homebrew Generators' />
         <meta property="og:description" content='Homebrew Generators' />
         <meta property="og:url" content={`https://www.diredice.com/brews`} />
         <meta property="og:type" content="website" />

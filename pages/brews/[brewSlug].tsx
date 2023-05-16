@@ -7,9 +7,9 @@ export default function Brew({ targetBrew }) {
   return (
     <>
       <Head>
-        <title>{targetBrew.metaTitle}</title>
+        <title>{`Dire Dice - ${targetBrew.metaTitle}`}</title>
         <meta name="description" content={targetBrew.metaDescription} />
-        <meta property="og:title" content={targetBrew.metaTitle} />
+        <meta property="og:title" content={`Dire Dice - ${targetBrew.metaTitle}`} />
         <meta property="og:description" content={targetBrew.metaDescription} />
         <meta property="og:url" content={`https://www.diredice.com/brews/${targetBrew.slug}`} />
         <meta property="og:type" content="website" />

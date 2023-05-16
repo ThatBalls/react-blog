@@ -6,9 +6,9 @@ export default function BuildsPage({ coverImg, buildList, dataHost }) {
   return (
     <div>
       <Head>
-        <title>Build List</title>
+        <title>Dire Dice - Build List</title>
         <meta name="description" content='Build List' />
-        <meta property="og:title" content='Build List' />
+        <meta property="og:title" content='Dire Dice - Build List' />
         <meta property="og:description" content='Build List' />
         <meta property="og:url" content={`https://www.diredice.com/builds`} />
         <meta property="og:type" content="website" />
