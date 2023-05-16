@@ -1,4 +1,3 @@
-import { LinkButton } from "patterns";
 import { BrewListContainer, Brew, BrewDescriptionWrapper, BrewImage, BrewImageWrapper } from "./BrewList.css";
 
 export const BrewList = ({ brews }) => {

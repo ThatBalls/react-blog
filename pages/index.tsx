@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import { HeroImage, FeaturedBuilds, FeaturedTools } from 'components';
-import { getPage, getFeaturedBuilds, getFeaturedTools } from 'utils/payloadApi';
+import { getPage, getFeaturedBuilds, getFeaturedTools, getFeaturedBrews } from 'utils/payloadApi';
 import { HomeContainer } from "styles/Home.css";
+import { FeaturedBrews } from 'components/FeaturedBrews';
 
-export default function Home({coverImg, featuredBuilds, featuredTools}) {
+export default function Home({coverImg, featuredBrews, featuredBuilds, featuredTools}) {
   return (
     <>
       <Head>
@@ -17,6 +18,7 @@ export default function Home({coverImg, featuredBuilds, featuredTools}) {
         subtitle="Roll with it"
       />
       <HomeContainer>
+        <FeaturedBrews brews={featuredBrews} />
         <FeaturedBuilds builds={featuredBuilds} />
         <FeaturedTools tools={featuredTools} />
       </HomeContainer>
@@ -28,10 +30,12 @@ export async function getStaticProps() {
   const pageData = await getPage("home");
   const featuredBuilds = await getFeaturedBuilds();
   const featuredTools = await getFeaturedTools();
+  const featuredBrews = await getFeaturedBrews();
   const dataHost = process.env.PAYLOAD_HOST;
   return {
     props:{
       coverImg: `${dataHost}${pageData.bannerImage.url}`,
+      featuredBrews,
       featuredBuilds,
       featuredTools,
     }
