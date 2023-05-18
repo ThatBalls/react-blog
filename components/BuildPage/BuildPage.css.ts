@@ -54,6 +54,7 @@ export const ContentWrapper = styled.div`
 
   ul {
     width: 100%;
+    list-style-type: none;
   }
 `;
 
