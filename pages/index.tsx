@@ -10,6 +10,10 @@ export default function Home({coverImg, featuredBrews, featuredBuilds, featuredT
       <Head>
         <title>Dire Dice</title>
         <meta name="description" content="Tools and Builds for Dungeons and Dragons" />
+        <meta property="og:title" content={`Dire Dice`} />
+        <meta property="og:description" content={`Tools and Builds for Dungeons and Dragons`} />
+        <meta property="og:url" content={`https://www.diredice.com`} />
+        <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeroImage

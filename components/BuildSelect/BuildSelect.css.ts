@@ -13,10 +13,7 @@ export const GridContainer = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-
-  @media (max-width: 1024px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 
 export const ImageContainer = styled.div`
