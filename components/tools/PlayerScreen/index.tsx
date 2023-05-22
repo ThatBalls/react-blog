@@ -108,7 +108,7 @@ const ScreenItemSelector = ({ isOpen, onTypeSelect, onClose }) => {
 
 const SearchDialog = ({ isOpen, onSelect, onClose }) => {
   const [ searchTerm, setSearchTerm ] = useState<string>("");
-  const [ searchResults, setSearchResults ] = useState<ISearchItem[] | null>(null);
+  const [ searchResults, setSearchResults ] = useState<any[] | null>(null);
   const debouncedSearch = useDebounce(searchTerm, 500);
 
   useEffect(() => {
@@ -179,7 +179,7 @@ const FrameDialog = ({ isOpen, onSelect, onClose }) => {
 };
 
 const BrewDialog = ({ isOpen, brews, onSelect, onClose }) => {
-  const [ brew, setBrew ] = useState<Object>(null);
+  const [ brew, setBrew ] = useState<any>(null);
 
   const onButtonClick = () => {
     onSelect(brew);
