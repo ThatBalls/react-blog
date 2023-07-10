@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   try {
     const category = req.query.category;
     const slug = req.query.slug;
+    await res.revalidate('/');
     await res.revalidate(`/${category}`);
     await res.revalidate(`/${category}/${slug}`);
     return res.json({ revalidated: true });
