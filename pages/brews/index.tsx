@@ -3,14 +3,15 @@ import { getPage } from "utils/payloadApi";
 import { HeroImage, BrewList } from 'components';
 import { getBrews } from 'utils/payloadApi';
 
-export default function BuildsPage({ coverImg, brews }) {
+export default function BuildsPage({ coverImg, brews, pageData }) {
   return (
     <>
       <Head>
         <title>Dire Dice - Homebrew Generators</title>
-        <meta name="description" content='Homebrew Generators' />
-        <meta property="og:title" content='Dire Dice - Homebrew Generators' />
-        <meta property="og:description" content='Homebrew Generators' />
+        <meta name="description" content={pageData.meta.description} />
+        <meta property="og:title" content={pageData.meta.title} />
+        <meta property="og:description" content={pageData.meta.description} />
+        <meta property="og:image" content={`https://www.diredice.com${pageData.bannerImage.url}`} />
         <meta property="og:url" content={`https://www.diredice.com/brews`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
@@ -28,7 +29,8 @@ export async function getStaticProps() {
   return {
     props: {
       coverImg: `${dataHost}${pageData.bannerImage.url}`,
-      brews
+      brews,
+      pageData,
     }
   }
 };

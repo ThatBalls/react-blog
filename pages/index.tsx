@@ -4,18 +4,22 @@ import { getPage, getFeaturedBuilds, getFeaturedTools, getFeaturedBrews } from '
 import { HomeContainer } from "styles/Home.css";
 import { FeaturedBrews } from 'components/FeaturedBrews';
 
-export default function Home({coverImg, featuredBrews, featuredBuilds, featuredTools}) {
+export default function Home({coverImg, featuredBrews, featuredBuilds, featuredTools, pageData}) {
   return (
     <>
       <Head>
         <title>Dire Dice</title>
-        <meta name="description" content="Tools and Builds for Dungeons and Dragons" />
+        <meta name="description" content={pageData.meta.description} />
+        <meta property="og:title" content={pageData.meta.title} />
+        <meta property="og:description" content={pageData.meta.description} />
+        <meta property="og:image" content={`https://www.diredice.com${pageData.bannerImage.url}`} />
+        <meta property="og:url" content={`https://www.diredice.com/builds`} />
+        <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeroImage
         coverImg={coverImg}
         title="Dire Dice"
-        subtitle="Roll with it"
       />
       <HomeContainer>
         <FeaturedBrews brews={featuredBrews} />
@@ -38,6 +42,7 @@ export async function getStaticProps() {
       featuredBrews,
       featuredBuilds,
       featuredTools,
+      pageData,
     }
   };
 }

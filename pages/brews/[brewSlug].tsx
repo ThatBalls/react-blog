@@ -7,10 +7,11 @@ export default function Brew({ targetBrew }) {
   return (
     <>
       <Head>
-        <title>{`Dire Dice - ${targetBrew.metaTitle}`}</title>
-        <meta name="description" content={targetBrew.metaDescription} />
-        <meta property="og:title" content={`Dire Dice - ${targetBrew.metaTitle}`} />
-        <meta property="og:description" content={targetBrew.metaDescription} />
+        <title>{`Dire Dice | Brews | ${targetBrew.title}`}</title>
+        <meta name="description" content={targetBrew.meta.description} />
+        <meta property="og:title" content={targetBrew.meta.title} />
+        <meta property="og:description" content={targetBrew.meta.description} />
+        <meta property="og:image" content={`https://www.diredice.com${targetBrew.bannerImage.url}`} />
         <meta property="og:url" content={`https://www.diredice.com/brews/${targetBrew.slug}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
