@@ -7,10 +7,11 @@ export default function Build({ targetBuild }) {
   return (
     <>
       <Head>
-        <title>{`Dire Dice - ${targetBuild.metaTitle}`}</title>
-        <meta name="description" content={targetBuild.metaDescription} />
-        <meta property="og:title" content={`Dire Dice - ${targetBuild.metaTitle}`} />
-        <meta property="og:description" content={targetBuild.metaDescription} />
+        <title>{`Dire Dice | Builds | ${targetBuild.title}`}</title>
+        <meta name="description" content={targetBuild.meta.description} />
+        <meta property="og:title" content={targetBuild.meta.title} />
+        <meta property="og:description" content={targetBuild.meta.description} />
+        <meta property="og:image" content={`https://www.diredice.com${targetBuild.bannerImage.url}`} />
         <meta property="og:url" content={`https://www.diredice.com/builds/${targetBuild.slug}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
@@ -40,6 +41,6 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
