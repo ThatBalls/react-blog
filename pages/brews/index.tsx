@@ -25,7 +25,7 @@ export default function BuildsPage({ coverImg, brews, pageData }) {
 export async function getStaticProps() {
   const pageData = await getPage("brews");
   const brews = await getBrews();
-  const dataHost = process.env.PAYLOAD_HOST;
+  const dataHost = process.env.HOST;
   return {
     props: {
       coverImg: `${dataHost}${pageData.bannerImage.url}`,

@@ -3,7 +3,7 @@ import { get } from "lodash";
 import qs from "qs";
 
 const api = axios.create({
-  baseURL: `${process.env.PAYLOAD_HOST}/api`,
+  baseURL: `${process.env.HOST}/api`,
   headers: {
     "Access-Control-Allow-Origin": "*",
     'Access-Control-Allow-Headers': '*'
