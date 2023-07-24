@@ -14,6 +14,7 @@ export default function BuildsPage({ coverImg, buildList, pageData }) {
         <meta property="og:url" content={`https://www.diredice.com/builds`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`https://www.diredice.com/builds`} key="canonical" />
       </Head>
       <HeroImage
         coverImg={coverImg}
