@@ -9,11 +9,12 @@ export const FeaturedToolsContainer = styled.section`
   overflow: hidden;
   position: relative;
   background-color: ${COLORS.TERTIARY};
+  text-align: center;
 
   @media (max-width: 1024px) {
     flex-direction: column;
     align-items: center;
-    max-width: 400px;
+    max-width: 100%;
     min-width: 350px;
     padding-top: 1rem;
 

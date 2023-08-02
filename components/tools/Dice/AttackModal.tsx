@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react';
-import { Form, Button, Modal, InputGroup, FormControl, Alert } from 'react-bootstrap';
+import { Button, TextField, Radio, RadioGroup, FormControlLabel, Alert, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, ATTACK_DEFAULTS } from './constants';
+import { DialogInputForm, DialogTextInput } from './DiceTool.css';
+
 
 export const AttackModal = ({
   showAttackModal,
@@ -96,107 +98,83 @@ export const AttackModal = ({
     }
   };
 
-  return (<Modal centered show={showAttackModal} onHide={handleAttackClose}>
-    <Modal.Header closeButton>
-      <Modal.Title>Add Attack</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Attack Name</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={attackName}
-          onChange={(event) => setAttackName(event.target.value)} 
-          placeholder="Enter Name (optional)" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Attack Bonus</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={attackBonus}
-          onChange={(event) => setAttackBonus(event.target.value)} 
-          placeholder="Enter bonus" />
-        <InputGroup.Text className="text-muted">
-          Specify + or -
-        </InputGroup.Text>
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Attack Damage</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={attackDamage}
-          onChange={(event) => setAttackDamage(event.target.value)} 
-          placeholder="Enter damage" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Target AC</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={targetAc}
-          onChange={(event) => setTargetAc(event.target.value)}
-          placeholder="Enter AC" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <Form.Check inline
-          id='attackDisadvantage'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.DISADVANTAGE}
-          onChange={() => setModifier(MODIFIERS.DISADVANTAGE)}
-          label="Disadvantage" />
-        <Form.Check inline
-          id='attackNormal'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.NORMAL}
-          defaultChecked
-          onChange={() => setModifier(MODIFIERS.NORMAL)}
-          label="No Advantage" />
-        <Form.Check inline
-          id='attackAdvantage'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.ADVANTAGE}
-          onChange={() => setModifier(MODIFIERS.ADVANTAGE)}
-          label="Advantage" />
-        <Form.Check inline
-          id='attackDAdvantage'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.DOUBLE_ADVANTAGE}
-          onChange={() => setModifier(MODIFIERS.DOUBLE_ADVANTAGE)}
-          label="Double Advantage" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Number of Attacks</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={numberOfAttacks}
-          onChange={(event) => setNumberOfAttacks(event.target.value)} 
-          placeholder="Enter number of attacks" />
-      </InputGroup>
-      <InputGroup>
-        <InputGroup.Text>Critical Chance</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={critChance}
-          onChange={(event) => setCritChance(event.target.value)} 
-          placeholder="Enter Critical Chance" />
-      </InputGroup>
-      {validationError && <Alert variant='danger'>{validationError.message}</Alert>}
-      {attackResult && <Alert variant='primary'>
+  return (<Dialog open={showAttackModal} onClose={handleAttackClose}>
+    <DialogTitle>Add Attack</DialogTitle>
+    <DialogInputForm>
+      <DialogTextInput
+        label="Attack Name"
+        variant="outlined"
+        value={attackName}
+        placeholder="Enter Name (Optional)"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setAttackName(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Attack Bonus"
+        variant="outlined"
+        value={attackBonus}
+        placeholder="Enter attack bonus"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setAttackBonus(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Attack Damage"
+        variant="outlined"
+        value={attackDamage}
+        placeholder="Enter damage"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setAttackDamage(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Target AC"
+        variant="outlined"
+        value={targetAc}
+        placeholder="Enter target's AC"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setTargetAc(event.target.value);
+        }}
+      />
+      <RadioGroup row defaultValue={MODIFIERS.NORMAL} onChange={(_, value) => setModifier(value)}>
+        <FormControlLabel value={MODIFIERS.DISADVANTAGE} control={<Radio />} label="Disadvantage" />
+        <FormControlLabel value={MODIFIERS.NORMAL} control={<Radio />} label="No Advantage" />
+        <FormControlLabel value={MODIFIERS.ADVANTAGE} control={<Radio />} label="Advantage" />
+        <FormControlLabel value={MODIFIERS.DOUBLE_ADVANTAGE} control={<Radio />} label="Double Advantage" />
+      </RadioGroup>
+      <DialogTextInput
+        label="Number of Attacks"
+        variant="outlined"
+        value={numberOfAttacks}
+        placeholder="Enter number of attacks"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setNumberOfAttacks(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Critical Chance"
+        variant="outlined"
+        value={critChance}
+        placeholder="Enter critical chance"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setCritChance(event.target.value);
+        }}
+      />
+      {validationError && <Alert icon={<></>} severity="error">{validationError.message}</Alert>}
+      {attackResult && <Alert icon={<></>} severity="warning">
         <p>Chance to hit: {attackResult.chanceToHit}</p>
-        <p>Average attack damage: {attackResult.averageDamage}</p>
+        <p>Average damage: {attackResult.averageDamage}</p>
         <p>Total Average Damage: {attackResult.averageDamage * attackResult.numberOfAttacks}</p>
       </Alert>}
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleAnalyzeAttack}>
+    </DialogInputForm>
+    <DialogActions>
+      <Button variant="outlined" onClick={handleAnalyzeAttack}>
         Analyze
       </Button>
-      <Button variant="primary" onClick={onSaveClicked}>
+      <Button variant="contained" onClick={onSaveClicked}>
         {editIndex !== null ? "Save" : "Add"}
       </Button>
-    </Modal.Footer>
-  </Modal>);
+    </DialogActions>
+  </Dialog>);
 };

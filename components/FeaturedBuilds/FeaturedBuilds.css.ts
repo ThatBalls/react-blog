@@ -141,9 +141,10 @@ export const FeaturedBuildPreviewArea = styled.div`
 export const FeaturedBuildsContainer = styled.section`
   width: 100%;
   height: 400px;
+  text-align: center;
 
   @media (max-width: 1024px) {
-    max-width: 400px;
+    max-width: 100%;
     min-width: 350px;
   }
 `;

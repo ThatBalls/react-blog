@@ -7,4 +7,8 @@ export const GlobalStyles = styled.div`
   > * {
     background-color: ${COLORS.BACKGROUND};
   }
+
+  a:hover {
+    color: #0a58ca
+  }
 `;
