@@ -15,6 +15,7 @@ export default function Build({ targetBuild }) {
         <meta property="og:url" content={`https://www.diredice.com/builds/${targetBuild.slug}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`https://www.diredice.com/builds/${targetBuild.slug}`} key="canonical" />
       </Head>
       <BuildPage build={targetBuild} />
     </>

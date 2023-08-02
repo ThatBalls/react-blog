@@ -15,6 +15,7 @@ export default function Brew({ targetBrew }) {
         <meta property="og:url" content={`https://www.diredice.com/brews/${targetBrew.slug}`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`https://www.diredice.com/brews/${targetBrew.slug}`} key="canonical" />
       </Head>
       <PicoWrapper url={targetBrew.externalUrl} />
     </>

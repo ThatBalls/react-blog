@@ -67,6 +67,7 @@ export default function DiceCalculator() {
         <meta property="og:url" content={`https://www.diredice.com/tools/dice`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`https://www.diredice.com/tools/dice`} key="canonical" />
       </Head>
       <DiceTool />
       {/* <Stack gap={3}>

@@ -15,6 +15,7 @@ export default function BuildsPage({ coverImg, brews, pageData }) {
         <meta property="og:url" content={`https://www.diredice.com/brews`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`https://www.diredice.com/brews`} key="canonical" />
       </Head>
       <HeroImage coverImg={coverImg} />
       <BrewList brews={brews} />
@@ -25,7 +26,7 @@ export default function BuildsPage({ coverImg, brews, pageData }) {
 export async function getStaticProps() {
   const pageData = await getPage("brews");
   const brews = await getBrews();
-  const dataHost = process.env.PAYLOAD_HOST;
+  const dataHost = process.env.HOST;
   return {
     props: {
       coverImg: `${dataHost}${pageData.bannerImage.url}`,

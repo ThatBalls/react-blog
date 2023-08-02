@@ -16,6 +16,7 @@ export default function Home({coverImg, featuredBrews, featuredBuilds, featuredT
         <meta property="og:url" content={`https://www.diredice.com/builds`} />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`https://www.diredice.com`} key="canonical" />
       </Head>
       <HeroImage
         coverImg={coverImg}
@@ -35,7 +36,7 @@ export async function getStaticProps() {
   const featuredBuilds = await getFeaturedBuilds();
   const featuredTools = await getFeaturedTools();
   const featuredBrews = await getFeaturedBrews();
-  const dataHost = process.env.PAYLOAD_HOST;
+  const dataHost = process.env.HOST;
   return {
     props:{
       coverImg: `${dataHost}${pageData.bannerImage.url}`,
