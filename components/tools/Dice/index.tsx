@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Alert, Card, Stack, Row } from 'react-bootstrap';
+import { Button, Alert, Card, CardContent, CardActions, Stack, Typography } from '@mui/material';
 
 import { AttackModal } from "./AttackModal";
 import { SaveModal } from "./SaveModal";
@@ -61,10 +61,10 @@ export const DiceTool = () => {
   return (
     <Stack gap={3}>
       <ButtonRow>
-        <Button variant="primary" size='lg' onClick={() => setShowAttackModal(true)}>Add Attack</Button>
-        <Button variant="primary" size='lg' onClick={() => setShowSaveModal(true)}>Add Target Save</Button>
+        <Button variant="contained" onClick={() => setShowAttackModal(true)}>Add Attack</Button>
+        <Button variant="contained" onClick={() => setShowSaveModal(true)}>Add Target Save</Button>
       </ButtonRow>
-      {entireResult.length > 0 && <Alert variant='primary'>
+      {entireResult.length > 0 && <Alert icon={<></>} severity="success">
         <p>Total Average Damage: {entireResult.reduce((total, attack) => {
           return total + (attack.averageDamage * attack.numberOfAttacks);
         }, 0)}</p>
@@ -73,22 +73,22 @@ export const DiceTool = () => {
         {entireResult.map((resultObj, i) => {
           const title = resultObj.attackName || resultObj.saveName || (resultObj.type === TYPES.ATTACK ? `Attack ${i + 1}` : `Save ${i + 1}`)
           return (
-            <Card key={`card-${i}`}>
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>
-                  <Alert variant='primary'>
+            <Card variant="outlined" key={`card-${i}`}>
+              <CardContent>
+                <Typography variant="h5">{title}</Typography>
+                <Typography variant="h6">
+                  <Alert icon={<></>} severity="success">
                     <p>Chance to hit: {resultObj.chanceToHit}</p>
                     <p>Average attack damage: {resultObj.averageDamage}</p>
                     <p>Number of Attacks: {resultObj.numberOfAttacks}</p>
                     <p>Total Average Damage: {resultObj.averageDamage * resultObj.numberOfAttacks}</p>
                   </Alert>
-                </Card.Text>
-                <Stack direction='horizontal' gap={3}>
-                  <Button variant='info' onClick={() => onEditClicked(i)}>Edit</Button>
-                  <Button variant='danger' onClick={() => onDeleteClicked(i)}>Delete</Button>
-                </Stack>
-              </Card.Body>
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button variant="contained" onClick={() => onEditClicked(i)}>Edit</Button>
+                <Button variant="outlined" onClick={() => onDeleteClicked(i)}>Delete</Button>
+              </CardActions>
             </Card>
           )
         })}

@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
-import { Form, Button, Modal, InputGroup, FormControl, Alert } from 'react-bootstrap';
+import { Button, TextField, Radio, RadioGroup, Checkbox, FormControlLabel, Alert, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Dice from 'dice-notation-js';
 import { MODIFIERS, TYPES, SAVE_DEFAULTS } from './constants';
+import { DialogInputForm, DialogTextInput } from './DiceTool.css';
 
 export const SaveModal = ({
   showSaveModal,
@@ -94,96 +95,77 @@ export const SaveModal = ({
     }
   };
 
-  return (<Modal centered show={showSaveModal} onHide={handleSaveClose}>
-    <Modal.Header closeButton>
-      <Modal.Title>Add Target Save</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Save Name</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={saveName}
-          onChange={(event) => setSaveName(event.target.value)}
-          placeholder="Enter Save Name (Optional)" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Save DC</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={saveDc}
-          onChange={(event) => setSaveDc(event.target.value)}
-          placeholder="Enter DC" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Attack Damage</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={saveDamage}
-          onChange={(event) => setSaveDamage(event.target.value)} 
-          placeholder="Enter damage" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Target Save Bonus</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={saveBonus}
-          onChange={(event) => setSaveBonus(event.target.value)}
-          placeholder="Enter Save Bonus" />
-        <InputGroup.Text className="text-muted">
-          Specify + or -
-        </InputGroup.Text>
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <Form.Check inline
-          id='saveDisadvantage'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.DISADVANTAGE}
-          onChange={() => setModifier(MODIFIERS.DISADVANTAGE)}
-          label="Disadvantage" />
-        <Form.Check inline
-          id='saveNormal'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.NORMAL}
-          defaultChecked
-          onChange={() => setModifier(MODIFIERS.NORMAL)}
-          label="No Advantage" />
-        <Form.Check inline
-          id='saveAdvantage'
-          name="advantageGroup"
-          type="radio"
-          value={MODIFIERS.ADVANTAGE}
-          onChange={() => setModifier(MODIFIERS.ADVANTAGE)}
-          label="Advantage" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text>Number of Targets</InputGroup.Text>
-        <FormControl
-          type="text"
-          value={numberOfTargets}
-          onChange={(event) => setNumberOfTargets(event.target.value)} 
-          placeholder="Enter number of targets" />
-      </InputGroup>
-      <InputGroup>
-        <Form.Check
-          id='saveHalf'
-          name="saveHalf"
-          type="checkbox"
-          checked={halfOnSave}
-          onChange={(event) => setHalfOnSave(event.target.checked)}
-          label="Half Damage on Save" />
-      </InputGroup>
-      {validationError && <Alert variant='danger'>{validationError.message}</Alert>}
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleAnalyzeSave}>
+  return (<Dialog open={showSaveModal} onClose={handleSaveClose}>
+    <DialogTitle>Add Target Save</DialogTitle>
+    <DialogInputForm>
+      <DialogTextInput
+        label="Save Name"
+        variant="outlined"
+        value={saveName}
+        placeholder="Enter Save Name (Optional)"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setSaveName(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Save DC"
+        variant="outlined"
+        value={saveDc}
+        placeholder="Enter DC"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setSaveDc(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Save Damage"
+        variant="outlined"
+        value={saveDamage}
+        placeholder="Enter damage on failed save"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setSaveDamage(event.target.value);
+        }}
+      />
+      <DialogTextInput
+        label="Target Save Bonus"
+        variant="outlined"
+        value={saveBonus}
+        placeholder="Enter save bonus"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setSaveBonus(event.target.value);
+        }}
+      />
+      <RadioGroup defaultValue={MODIFIERS.NORMAL} onChange={(_, value) => setModifier(value)}>
+        <FormControlLabel value={MODIFIERS.DISADVANTAGE} control={<Radio />} label="Disadvantage" />
+        <FormControlLabel value={MODIFIERS.NORMAL} control={<Radio />} label="No Advantage" />
+        <FormControlLabel value={MODIFIERS.ADVANTAGE} control={<Radio />} label="Advantage" />
+      </RadioGroup>
+      <DialogTextInput
+        label="Number of Targets"
+        variant="outlined"
+        value={numberOfTargets}
+        placeholder="Enter number of targets"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setNumberOfTargets(event.target.value);
+        }}
+      />
+      <FormControlLabel
+        value={halfOnSave}
+        control={<Checkbox onChange={(event) => setHalfOnSave(event.target.checked)} />}
+        label="Half Damage on Save" />
+      {validationError && <Alert icon={<></>} severity='error'>{validationError.message}</Alert>}
+      {saveResult && <Alert icon={<></>} severity="warning">
+        <p>Chance to hit: {saveResult.chanceToHit}</p>
+        <p>Average attack damage: {saveResult.averageDamage}</p>
+        <p>Total Average Damage: {saveResult.averageDamage * saveResult.numberOfAttacks}</p>
+      </Alert>}
+    </DialogInputForm>
+    <DialogActions>
+      <Button variant="outlined" onClick={handleAnalyzeSave}>
         Analyze
       </Button>
-      <Button variant="primary" onClick={onSaveClicked}>
+      <Button variant="contained" onClick={onSaveClicked}>
         {editIndex !== null ? "Save" : "Add"}
       </Button>
-    </Modal.Footer>
-  </Modal>);
+    </DialogActions>
+  </Dialog>);
 }
