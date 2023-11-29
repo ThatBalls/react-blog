@@ -39,6 +39,7 @@ export const Overlay = styled.div`
   right: 0;
   bottom: 0;
   display: flex;
+  pointer-events: ${({ visible }) => (visible ? "auto" : "none")};
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -49,6 +50,11 @@ export const Overlay = styled.div`
   transition: opacity 0.3s ease;
   border: ${({ visible }) => (visible ? `0.5rem ${COLORS.ACCENT} solid` : "none")};
   border-radius: 0.5rem;
+
+  a {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const InfoContainer = styled.div`

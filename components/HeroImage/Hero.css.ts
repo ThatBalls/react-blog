@@ -16,6 +16,8 @@ export const HeroImg = styled.div`
 `;
 
 export const HeroImageElement = styled(Image)`
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 `;
 

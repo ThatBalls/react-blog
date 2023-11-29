@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { LinkButton } from "patterns";
+import Link from "next/link";
 import { BuildSelectContainer, GridContainer, ImageContainer, Image, Overlay, InfoContainer, InfoHeader, InfoText } from "./BuildSelect.css";
 
 export const BuildSelect = ({ builds }) => {
@@ -20,7 +21,7 @@ export const BuildSelect = ({ builds }) => {
         {builds.map((build, index) => (
           <ImageContainer key={build.id} onClick={() => handleClick(index)}>
             <Image src={build.bannerImage.sizes.thumbnail.url} alt={build.bannerImage.alt} priority />
-            <Overlay visible={selectedIndex === index}>{build.name}</Overlay>
+            <Overlay visible={selectedIndex === index}><Link href={`/builds/${build.slug}`} /></Overlay>
           </ImageContainer>
         ))}
       </GridContainer>
