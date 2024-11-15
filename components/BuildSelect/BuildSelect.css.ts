@@ -4,7 +4,7 @@ import { COLORS } from "styles/vars.css";
 export const BuildSelectContainer = styled.div`
   display: flex;
   background-color: ${COLORS.BACKGROUND};
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   flex-direction: column;
   align-items: center;
 `;

@@ -12,11 +12,13 @@
     "pm2:stop": "pm2 stop react-blog; pm2 delete react-blog"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "axios": "^1.3.2",
     "bootstrap": "5.1.1",
     "css-select": "^5.1.0",
     "dice-notation-js": "^1.0.3",
     "html-react-parser": "^1.3.0",
+    "http-proxy": "^1.18.1",
     "lodash": "^4.17.21",
     "next": "^13.3.1",
     "next-sitemap": "^4.1.8",
@@ -28,7 +30,10 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.10.0",
     "slate-serializers": "^0.0.25",
-    "styled-components": "^5.3.10"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "styled-components": "^5.3.10",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@types/node": "18.16.0",

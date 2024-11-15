@@ -5,10 +5,10 @@ module.exports = {
       {
         source: "/media/:path*",
         destination: `${process.env.HOST}/media/:path*`,
-      }
+      },
     ]
   },
-  images: { 
+  images: {
     domains: [`${process.env.HOST}`],
     loader: "custom",
     loaderFile: "./utils/imageLoader.tsx",
