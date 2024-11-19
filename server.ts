@@ -19,7 +19,7 @@ app.prepare().then(() => {
     const io = new Server(httpServer, {
         // Add CORS configuration if needed
         cors: {
-            origin: `http://${hostname}:${port}`, // Or your frontend origin
+            origin: dev ? `http://${hostname}:${port}` : process.env.CLIENT_ORIGIN, // Dynamic origin
             methods: ["GET", "POST"], // Allowed methods
         },
     });
