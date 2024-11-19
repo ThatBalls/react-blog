@@ -1,10 +1,14 @@
-const { createServer } = require('node:http');
-const next = require('next');
-const { Server } = require('socket.io');
+import { createServer } from "http";
+import next from "next";
+import { Server } from "socket.io";
+
+import { registerGeminiEvents } from "./websockets/gemini";
+import { registerAssistantEvents } from "./websockets/assistant";
+import { registerDescriberEvents } from "websockets/describer";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT) || 3000;
 // when using middleware `hostname` and `port` must be provided below
 const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
@@ -29,6 +33,10 @@ app.prepare().then(() => {
         socket.on("disconnect", () => {
             console.log("Client disconnected:", socket.id);
         });
+
+        registerGeminiEvents(io, socket);
+        registerAssistantEvents(io, socket);
+        registerDescriberEvents(io, socket);
     });
 
     httpServer
