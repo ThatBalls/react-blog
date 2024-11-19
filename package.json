@@ -6,7 +6,7 @@
     "dev": "tsx server.ts",
     "build": "next build --debug",
     "postbuild": "next-sitemap",
-    "start": "next start",
+    "start": "NODE_ENV=production tsx server.js",
     "lint": "next lint",
     "pm2:start": "pm2 start yarn --interpreter bash --name react-blog -- start; yarn pm2 save; yarn pm2 logs",
     "pm2:stop": "pm2 stop react-blog; pm2 delete react-blog"
