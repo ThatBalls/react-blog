@@ -25,11 +25,12 @@ const systemInstruction = `You are Brewster, an assistant for a dungeon master, 
 
 export const registerAssistantEvents = (io, socket) => {
     const apiKey = process.env.GEMINI_API_KEY;
+    const modelString = process.env.GEMINI_MODEL;
     let chat;
     socket.on('assistant-start', (message) => {
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-pro",
+        model: modelString,
         systemInstruction,
         safetySettings,
       });

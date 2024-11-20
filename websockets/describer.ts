@@ -1,14 +1,15 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GenerativeModel, GoogleGenerativeAI } from "@google/generative-ai";
 
 const systemInstruction = `You are a dungeon master describing a fantasy character. Provide a detailed description of a given character including physical appearance, personality, distinguishing characteristics.
 Provide response in parseable html elements.`
 
 export const registerDescriberEvents = (io, socket) => {
     const apiKey = process.env.GEMINI_API_KEY;
+    const modelString = process.env.GEMINI_MODEL;
     let chat;
     socket.on('describer-start', (message) => {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+      const model = genAI.getGenerativeModel({ model: modelString, systemInstruction });
       chat = model.startChat();
     });
     socket.on('describer-message', async (message) => {
