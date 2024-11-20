@@ -16,13 +16,7 @@ const handler = app.getRequestHandler();
 app.prepare().then(() => {
     const httpServer = createServer(handler);
 
-    const io = new Server(httpServer, {
-        // Add CORS configuration if needed
-        cors: {
-            origin: dev ? `http://${hostname}:${port}` : process.env.CLIENT_ORIGIN, // Dynamic origin
-            methods: ["GET", "POST"], // Allowed methods
-        },
-    });
+    const io = new Server(httpServer);
 
     console.log("Socket.IO server initialized");
 
