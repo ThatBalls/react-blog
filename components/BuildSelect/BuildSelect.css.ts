@@ -13,6 +13,7 @@ export const GridContainer = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 
   @media (max-width: 1024px) {
     justify-content: center;
@@ -29,6 +30,30 @@ export const ImageContainer = styled.div`
 export const Image = styled.img`
   width: 100%;
   border-radius: 0.5rem;
+  transition: all 1s ease;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+  position: relative;
+
+  ${({ selected }) =>
+    selected ? `position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    z-index: 9999;` : null}
+`;
+
+export const BackgroundOverlay = styled.div`
+${({ visible }) =>
+  visible ? `position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;` : null}
 `;
 
 export const Overlay = styled.div`
@@ -38,6 +63,7 @@ export const Overlay = styled.div`
   right: 0;
   bottom: 0;
   display: flex;
+  pointer-events: ${({ visible }) => (visible ? "auto" : "none")};
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -48,6 +74,11 @@ export const Overlay = styled.div`
   transition: opacity 0.3s ease;
   border: ${({ visible }) => (visible ? `0.5rem ${COLORS.ACCENT} solid` : "none")};
   border-radius: 0.5rem;
+
+  a {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const InfoContainer = styled.div`

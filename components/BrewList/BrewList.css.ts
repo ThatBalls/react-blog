@@ -34,6 +34,7 @@ export const BrewDescriptionWrapper = styled.div`
   h1 {
     font-size: 2rem;
     padding: 0;
+    margin: 0;
   }
 `;
 
