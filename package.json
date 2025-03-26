@@ -3,20 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider next build --debug",
+    "dev": "tsx server.ts",
+    "build": "next build --debug",
     "postbuild": "next-sitemap",
-    "start": "next start",
+    "start": "NODE_ENV=production tsx server.js",
     "lint": "next lint",
     "pm2:start": "pm2 start yarn --interpreter bash --name react-blog -- start; yarn pm2 save; yarn pm2 logs",
     "pm2:stop": "pm2 stop react-blog; pm2 delete react-blog"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "axios": "^1.3.2",
     "bootstrap": "5.1.1",
     "css-select": "^5.1.0",
     "dice-notation-js": "^1.0.3",
-    "html-react-parser": "^1.3.0",
+    "html-react-parser": "^5.1.18",
+    "http-proxy": "^1.18.1",
     "lodash": "^4.17.21",
     "next": "^13.3.1",
     "next-sitemap": "^4.1.8",
@@ -28,7 +30,10 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.10.0",
     "slate-serializers": "^0.0.25",
-    "styled-components": "^5.3.10"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "styled-components": "^5.3.10",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@types/node": "18.16.0",
@@ -36,6 +41,7 @@
     "babel-plugin-styled-components": "^2.1.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.0.4"
   }
 }
