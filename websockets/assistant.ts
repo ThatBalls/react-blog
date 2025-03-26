@@ -27,6 +27,7 @@ export const registerAssistantEvents = (io, socket) => {
     const apiKey = process.env.GEMINI_API_KEY;
     const modelString = process.env.GEMINI_MODEL;
     let chat;
+    const history = [];
     socket.on('assistant-start', (message) => {
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({
@@ -37,14 +38,18 @@ export const registerAssistantEvents = (io, socket) => {
       chat = model.startChat();
     });
     socket.on('assistant-message', async (message) => {
-      console.log(`Received: ${message}`);
+      //console.log(`Received: ${message}`);
       try {
-        const result = await chat.sendMessageStream(message);
+        history.push(message);
+        let fullResponse = '';
+        const result = await chat.sendMessageStream(history);
         for await (const chunk of result.stream) {
           const chunkText = chunk.text();
           socket.emit('assistant-chunk', chunkText);
-          console.log(`Sent: ${chunkText}`);
+          //console.log(`Sent: ${chunkText}`);
+          fullResponse += chunkText;
         }
+        history.push(fullResponse);
         socket.emit('assistant-complete');
       } catch (error) {
         console.error('Gemini API error:', error);

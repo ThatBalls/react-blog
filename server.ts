@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 
 import { registerGeminiEvents } from "./websockets/gemini";
 import { registerAssistantEvents } from "./websockets/assistant";
-import { registerDescriberEvents } from "websockets/describer";
+import { registerDescriberEvents } from "./websockets/describer";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";

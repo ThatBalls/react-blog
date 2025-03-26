@@ -9,7 +9,7 @@ interface AIChatProps {
   events: EventTypes;
 }
 
-const intiialMessage = `<strong>Hail and well met!</strong> I am Brewster and I can assist you with any of your planning needs.
+const initialMessage = `<strong>Hail and well met!</strong> I am Brewster and I can assist you with any of your planning needs.
         Here are some examples of how I can help:
         <ul>
         <li>Writing details for a location (such as a tavern)</li>
@@ -23,7 +23,7 @@ export const AIChat = ({events}: AIChatProps) => {
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState<string>("");
-  const [history, setHistory] = useState<string[]>([intiialMessage]);
+  const [history, setHistory] = useState<string[]>([initialMessage]);
   const [inProgressIndex, setInProgressIndex] = useState<number>(-1);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
 
@@ -171,7 +171,9 @@ export const AIChat = ({events}: AIChatProps) => {
             <Button id="sendButton" type="submit">Send</Button>
           </ChatInputContainer>
           <NewChatButton onClick={() => {
-            setHistory([intiialMessage]);
+            socket.disconnect();
+            socket.connect();
+            setHistory([initialMessage]);
             setInProgressIndex(-1);
           }
           }>
