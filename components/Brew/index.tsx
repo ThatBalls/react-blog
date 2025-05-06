@@ -5,21 +5,28 @@ import { BrewBody, BrewContainer, BrewHeader, BrewTitle, ResponseArea } from "./
 import { EventTypes, socket } from '../../websockets/clientSocket';
 import { Button } from 'react-bootstrap';
 import { DescriberForm } from './BrewForms/Describer';
+import { ItemForm } from './BrewForms/Items';
+import { SceneForm } from './BrewForms/Scene';
+import { SubclassForm } from './BrewForms/Subclass';
+import { LocationForm } from './BrewForms/Location';
+import { AIChat } from 'components/AIChat';
 
 export enum BrewTypes {
-  DESCRIBE = "describe",
-  ITEM = "item",
-  LOCATIONS = "location",
-  SCENE = "scene",
+  ASSISTANT = "dm-assistant",
+  DESCRIBE = "character-describer",
+  ITEM = "magicitem",
+  LOCATIONS = "locations",
+  SCENE = "scene-setter",
   SUBCLASS = "subclass",
 };
 
 const BrewMap = {
+  [BrewTypes.ASSISTANT]: <AIChat />,
   [BrewTypes.DESCRIBE]: <DescriberForm />,
-  [BrewTypes.ITEM]: <div>Item</div>,
-  [BrewTypes.LOCATIONS]: <div>Locations</div>,
-  [BrewTypes.SCENE]: <div>Scene</div>,
-  [BrewTypes.SUBCLASS]: <div>Subclass</div>,
+  [BrewTypes.ITEM]: <ItemForm />,
+  [BrewTypes.LOCATIONS]: <LocationForm />,
+  [BrewTypes.SCENE]: <SceneForm />,
+  [BrewTypes.SUBCLASS]: <SubclassForm />,
 };
 
 interface BrewProps {

@@ -5,6 +5,10 @@ import { Server } from "socket.io";
 import { registerGeminiEvents } from "./websockets/gemini";
 import { registerAssistantEvents } from "./websockets/assistant";
 import { registerDescriberEvents } from "./websockets/describer";
+import { registerItemEvents } from "./websockets/items";
+import { registerSceneEvents } from "./websockets/scene";
+import { registerSubclassEvents } from "./websockets/subclass";
+import { registerLocationEvents } from "./websockets/location";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -31,6 +35,10 @@ app.prepare().then(() => {
         registerGeminiEvents(io, socket);
         registerAssistantEvents(io, socket);
         registerDescriberEvents(io, socket);
+        registerItemEvents(io, socket);
+        registerSceneEvents(io, socket);
+        registerSubclassEvents(io, socket);
+        registerLocationEvents(io, socket);
     });
 
     httpServer

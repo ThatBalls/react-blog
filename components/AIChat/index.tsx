@@ -4,10 +4,13 @@ import parse from 'html-react-parser';
 
 import { EventTypes, socket } from '../../websockets/clientSocket';
 import { ChatArea, ChatBody, ChatBubble, ChatContainer, ChatFooter, ChatHeader, ChatInput, ChatInputContainer, ChatTitle, NewChatButton } from "./Chat.css";
+import { generateEventTypes } from "components/Brew/brewUtils";
 
 interface AIChatProps {
   events: EventTypes;
 }
+
+const chatEvents = generateEventTypes('assistant');
 
 const initialMessage = `<strong>Hail and well met!</strong> I am Brewster and I can assist you with any of your planning needs.
         Here are some examples of how I can help:
@@ -19,7 +22,7 @@ const initialMessage = `<strong>Hail and well met!</strong> I am Brewster and I 
         <li>Helping flesh out adventure details</li>
         </ul>`
 
-export const AIChat = ({events}: AIChatProps) => {
+export const AIChat = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState<string>("");
@@ -34,7 +37,7 @@ export const AIChat = ({events}: AIChatProps) => {
       socket.io.engine.on("upgrade", (transport) => {
           setTransport(transport.name);
       });
-      socket.emit(events.start, 'Hello');
+      socket.emit(chatEvents.start, 'Hello');
   };
 
   const onDisconnect = () => {
@@ -72,7 +75,7 @@ export const AIChat = ({events}: AIChatProps) => {
 
   const onMessageComplete = () => {
       setInProgressIndex(-1);
-      socket.off(events.chunk, onChunk);
+      socket.off(chatEvents.chunk, onChunk);
   };
 
   useEffect(() => {
@@ -86,22 +89,22 @@ export const AIChat = ({events}: AIChatProps) => {
 
       socket.on("connect", onConnect);
       socket.on("disconnect", onDisconnect);
-      socket.on(events.complete, onMessageComplete);
+      socket.on(chatEvents.complete, onMessageComplete);
 
       return () => {
           socket.off("connect", onConnect);
           socket.off("disconnect", onDisconnect);
-          socket.off(events.chunk, onChunk);
-          socket.off(events.complete, onMessageComplete);
+          socket.off(chatEvents.chunk, onChunk);
+          socket.off(chatEvents.complete, onMessageComplete);
       };
   }, []);
 
   useEffect(() => {
     if (inProgressIndex !== -1) {
-      socket.off(events.chunk);
-      socket.on(events.chunk, onChunk); // Attach listener when expecting chunks
+      socket.off(chatEvents.chunk);
+      socket.on(chatEvents.chunk, onChunk); // Attach listener when expecting chunks
     } else {
-      socket.off(events.chunk); // Remove to prevent stale closures
+      socket.off(chatEvents.chunk); // Remove to prevent stale closures
     }
     // No cleanup function needed here - handled in the main useEffect
 }, [inProgressIndex]); // Correct dependency array is very important
@@ -109,7 +112,7 @@ export const AIChat = ({events}: AIChatProps) => {
   const onSend = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isConnected) {
-        socket.emit(events.message, message);
+        socket.emit(chatEvents.message, message);
         setHistory((prevHistory) => {
             const newHistory = [...prevHistory, message];
             setInProgressIndex(newHistory.length);
