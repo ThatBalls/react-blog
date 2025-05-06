@@ -2,6 +2,11 @@ import styled from "styled-components";
 import Link from 'next/link';
 import Image from "next/image";
 import { COLORS } from "styles/vars.css";
+import {
+  FeaturedContainer,
+  DescriptionWrapper,
+  FeaturedImage
+} from '../shared/FeaturedSection.css';
 
 export const EXPAND_TIME = 0.5;
 
@@ -60,16 +65,16 @@ export const FeaturedBuildLink = styled(Link)`
   height: 100%;
 `;
 
-export const FeaturedBuildWrapper = styled.div<{isBuildOpened: boolean}>`
+export const FeaturedBuildWrapper = styled.div<{ isBuildOpened: boolean }>`
   display: flex;
-  flex-grow: ${({isBuildOpened}) => isBuildOpened ? "3" : "1"};
+  flex-grow: ${({ isBuildOpened }) => isBuildOpened ? "3" : "1"};
   height: 100%;
   transform: skew(-20deg);
   animation: build-close ${EXPAND_TIME}s ease;
   animation-fill-mode: both;
   overflow: hidden;
 
-  ${({isBuildOpened}) => isBuildOpened ? `
+  ${({ isBuildOpened }) => isBuildOpened ? `
     animation: build-open ${EXPAND_TIME}s ease;
     animation-fill-mode: both;
 
@@ -129,22 +134,14 @@ export const FeaturedBuildPreviewArea = styled.div`
       background-color: ${COLORS.SECONDARY};
     }
   }
-
-  ${FeaturedBuildWrapper}:nth-child(4) {
-    background-color: ${COLORS.TERTIARY};
-    ${FeaturedBuildPreview}, ${FeaturedBuildImage} {
-      background-color: ${COLORS.TERTIARY};
-    }
-  }
 `;
 
-export const FeaturedBuildsContainer = styled.section`
-  width: 100%;
-  height: 400px;
-
+export const FeaturedBuildsContainer = styled(FeaturedContainer)`
+  background: transparent;
+  box-shadow: none;
+  
   @media (max-width: 1024px) {
-    max-width: 400px;
-    min-width: 350px;
+    background: ${COLORS.BACKGROUND};
   }
 `;
 
@@ -157,25 +154,21 @@ export const FeaturedBuildsLarge = styled.div`
   overflow: hidden;
   padding-left: 80px;
   position: relative;
+  background: ${COLORS.BACKGROUND};
+  
   @media (max-width: 1024px) {
     display: none;
   }
 `;
 
-export const FeaturedBuildDescriptionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: ${COLORS.PRIMARY};
-  padding: 1rem 5rem 1rem 5rem;
-  max-width: 500px;
-
+export const FeaturedBuildDescriptionWrapper = styled(DescriptionWrapper)`
+  padding: 2rem 4rem;
+  background: ${COLORS.BACKGROUND};
+  
   h1 {
-    font-size: 2rem;
-  }
-
-  @media (max-width: 1024px) {
-    padding: 1rem 2rem 1rem 2rem;
+    &::after {
+      bottom: -0.75rem;
+    }
   }
 `;
 
@@ -184,33 +177,26 @@ export const FeaturedBuildsSmall = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  background: ${COLORS.BACKGROUND};
+  border-radius: 20px;
+  overflow: hidden;
+  
   @media (max-width: 1024px) {
     padding-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
-  .carousel-wrapper,
-  .carousel,
-  .carousel > .slider-wrapper,
-  .carousel > .slider-wrapper > .slider {
-    height: 100%;
-    width: 100%;
-  }
-
-  & > * {
-    flex: 1 1 0;
-  }
 `;
 
 export const FeaturedImageWrapper = styled.div`
   width: 100%;
   position: relative;
+  aspect-ratio: 16/9;
 `;
 
-export const SmallFeaturedBuildImage = styled(Image)`
-  object-fit: contain;
+export const SmallFeaturedBuildImage = styled(FeaturedImage)`
+  border-radius: 0;
 `;
 
 export const FeaturedBuildCarouselItem = styled.div`

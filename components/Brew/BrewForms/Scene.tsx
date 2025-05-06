@@ -1,0 +1,4 @@
+/*const prompt = `Generate a concise, cohesive boxed text-style passage for a tabletop RPG scene set in the following location: "${this.sceneLocation}"
+        ${this.additionalDetails ? `Include the following details: "${this.additionalDetails}"` : ""}
+        Engage all five senses to create a vivid and immersive experience for the players. The description should be read aloud to the players. The passage should be purely descriptive, with no interrogative sentences and be no longer than three paragraphs. Do not list the senses; incorporate them throughout the description.`;
+                    */

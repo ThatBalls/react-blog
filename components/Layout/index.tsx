@@ -27,9 +27,6 @@ export const Layout = ({ children }) => {
           <Nav className="me-auto">
             <NavLink href="/brews">Brews</NavLink>
             <NavLink href="/builds">Builds</NavLink>
-            {/*<NavDropdown title="Journals" id="basic-nav-dropdown">
-              <DropDownLink href="/journals/skt">{"Storm King's Thunder"}</DropDownLink>
-  </NavDropdown>*/}
             <NavDropdown title="Tools" id="basic-nav-dropdown">
               <DropDownLink href="/tools/dice">Dice Calculator</DropDownLink>
             </NavDropdown>

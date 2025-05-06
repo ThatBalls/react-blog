@@ -5,10 +5,11 @@ import { COLORS } from "styles/vars.css";
 
 export const BrewListContainer = styled.section`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  justify-items: center;
 `;
 
 export const Brew = styled(Link)`
