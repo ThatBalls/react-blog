@@ -8,10 +8,18 @@ import { DescriberForm } from './BrewForms/Describer';
 
 export enum BrewTypes {
   DESCRIBE = "describe",
+  ITEM = "item",
+  LOCATIONS = "location",
+  SCENE = "scene",
+  SUBCLASS = "subclass",
 };
 
 const BrewMap = {
   [BrewTypes.DESCRIBE]: <DescriberForm />,
+  [BrewTypes.ITEM]: <div>Item</div>,
+  [BrewTypes.LOCATIONS]: <div>Locations</div>,
+  [BrewTypes.SCENE]: <div>Scene</div>,
+  [BrewTypes.SUBCLASS]: <div>Subclass</div>,
 };
 
 interface BrewProps {

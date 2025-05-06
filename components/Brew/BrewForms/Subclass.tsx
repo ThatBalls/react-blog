@@ -1,0 +1,2 @@
+/*let prompt = `Create a dungeons and dragons subclass for the ${class_name} class called ${subclass_name}, which is described as: ${subclass_description}. Features should be as specific as possible. Saving throws should have DCs, attacks should have damage, etc. Format response in JSON with structure: "subclassName": string, "subclassDescription": string, "subclassFeatures": { "featureTitle": string, "featureLevel": number, "featureDescription": string }[]"`;
+*/

@@ -1,22 +1,19 @@
-import { BrewListContainer, Brew, BrewDescriptionWrapper, BrewImage, BrewImageWrapper } from "./BrewList.css";
+import { BrewListContainer } from "./BrewList.css";
+import { Card } from "components/shared/Card";
 
 export const BrewList = ({ brews }) => {
   return (
     <BrewListContainer>
-      {brews.map(brew =>
-        (<Brew key={brew.title} href={`/brews/${brew.slug}`}>
-          <BrewImageWrapper>
-            <BrewImage src={brew.bannerImage.sizes.tablet.url}
-              alt={brew.bannerImage.alt}
-              fill
-              priority />
-          </BrewImageWrapper>
-          <BrewDescriptionWrapper>
-            <h1>{brew.title}</h1>
-            <p>{brew.description}</p>
-          </BrewDescriptionWrapper>
-        </Brew>)
-      )}
+      {brews.map(brew => (
+        <Card
+          key={brew.title}
+          href={`/brews/${brew.slug}`}
+          imageUrl={brew.bannerImage.sizes.tablet.url}
+          imageAlt={brew.bannerImage.alt}
+          title={brew.title}
+          description={brew.description}
+        />
+      ))}
     </BrewListContainer>
   );
 };

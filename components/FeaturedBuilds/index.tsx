@@ -1,14 +1,21 @@
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import { LinkButton } from "patterns";
+import { useRouter } from 'next/router';
+import { ROUTES } from 'constants/routes';
 import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildsLarge, FeaturedBuildsSmall, FeaturedBuildCarouselItem, FeaturedBuildCarouselImage, SmallFeaturedBuildImage, FeaturedImageWrapper } from './FeaturedBuilds.css'
 
 const NUM_FEATURED_BUILDS = 3;
 const AUTO_ADVANCE_TIME = 5000;
 
 export const FeaturedBuilds = ({ builds }) => {
+  const router = useRouter();
   const [openedBuild, setOpenedBuild] = useState<number>(0);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const buildRef = useRef(openedBuild);
+
+  const handleMobileClick = () => {
+    router.push(ROUTES.BUILDS);
+  };
 
   const createInterval = useCallback(() => {
     const id = setInterval(() => {
@@ -62,7 +69,7 @@ export const FeaturedBuilds = ({ builds }) => {
             <LinkButton href={`/builds/${largeBuildData.slug}`}>Read more</LinkButton>
           </FeaturedBuildDescriptionWrapper>
         </FeaturedBuildsLarge>
-        <FeaturedBuildsSmall>
+        <FeaturedBuildsSmall onClick={handleMobileClick} style={{ cursor: 'pointer' }}>
           <FeaturedImageWrapper>
             <SmallFeaturedBuildImage src={builds[0].bannerImage.sizes.tablet.url}
               alt={builds[0].bannerImage.alt}
@@ -72,7 +79,9 @@ export const FeaturedBuilds = ({ builds }) => {
           <FeaturedBuildDescriptionWrapper>
             <h1>Specialized Builds</h1>
             <p>Check out some fun and unique character builds for Dungeons and Dragons</p>
-            <LinkButton href={`/builds`}>Read more</LinkButton>
+            <div onClick={(e) => e.stopPropagation()}>
+              <LinkButton href={ROUTES.BUILDS}>Read more</LinkButton>
+            </div>
           </FeaturedBuildDescriptionWrapper>
         </FeaturedBuildsSmall>
       </FeaturedBuildsContainer>
