@@ -2,8 +2,9 @@ import React from "react";
 import Head from 'next/head'
 import { getBrews, getBrew } from "utils/payloadApi";
 import { PicoWrapper } from "components/tools"
+import { Brew, BrewTypes } from "components/Brew";
 
-export default function Brew({ targetBrew }) {
+export default function BrewPage({ targetBrew }) {
   return (
     <>
       <Head>
@@ -17,7 +18,11 @@ export default function Brew({ targetBrew }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={`https://www.diredice.com/brews/${targetBrew.slug}`} key="canonical" />
       </Head>
-      <PicoWrapper url={targetBrew.externalUrl} />
+      {targetBrew.slug && Object.values(BrewTypes).includes(targetBrew.slug.toLowerCase() as BrewTypes) ? (
+        <Brew brewType={targetBrew.slug.toLowerCase() as BrewTypes} />
+      ) : (
+        <PicoWrapper url={targetBrew.externalUrl} />
+      )}
     </>
   )
 }
