@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { BrewContainer, BrewHeader, BrewTitle, BrewBody, ResponseArea } from "../Brew.css"
 import { generateEventTypes } from "../brewUtils";
 import { useBrewResponse } from "../useBrewResponse";
-import {
+import {  
   ContentDisplay,
   ContentTitle,
   ContentDescription,
@@ -142,7 +142,7 @@ export const SceneForm = () => {
   }, [sentMessage]);
 
   useEffect(() => {
-    if (rawResponse) {
+    if (rawResponse && typeof rawResponse === 'string') {
       const jsonMatch = rawResponse.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         try {

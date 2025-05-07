@@ -61,6 +61,9 @@ export const MobileContainer = styled.div`
   @media (max-width: 1024px) {
     display: flex;
     flex-direction: column;
+    height: 500px;
+    min-height: 500px;
+    max-height: 500px;
   }
 `;
 
@@ -110,6 +113,19 @@ export const DescriptionWrapper = styled.div`
 
   @media (max-width: 1024px) {
     padding: 1.5rem 2rem 0 2rem;
+    flex: 1;
+    justify-content: flex-start;
+
+    p {
+      margin-top: 1rem;
+    }
+    
+    & > div:last-child {
+      margin-top: auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   h1 {

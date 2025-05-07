@@ -162,7 +162,7 @@ export const ItemForm = () => {
   }, [sentMessage]);
 
   useEffect(() => {
-    if (rawResponse) {
+    if (rawResponse && typeof rawResponse === 'string') {
       const jsonMatch = rawResponse.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         try {

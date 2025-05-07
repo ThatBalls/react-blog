@@ -66,6 +66,20 @@ export const BuildSelect: React.FC<BuildSelectProps> = ({ builds }) => {
         </nav>
       </SeoLinks>
 
+      {/* Always render InfoContainer before the grid */}
+      <InfoContainer role="complementary" aria-label="Build details">
+        <InfoHeader>{buildDetails.title}</InfoHeader>
+        <InfoText>{buildDetails.shortDescription}</InfoText>
+        {selectedIndex != null && (
+          <LinkButton 
+            href={`/builds/${builds[selectedIndex].slug}`}
+            aria-label={`View details for ${builds[selectedIndex].title}`}
+          >
+            Select Build
+          </LinkButton>
+        )}
+      </InfoContainer>
+
       <GridContainer role="grid">
         {builds.map((build, index) => (
           <ImageContainer 
@@ -94,19 +108,6 @@ export const BuildSelect: React.FC<BuildSelectProps> = ({ builds }) => {
           </ImageContainer>
         ))}
       </GridContainer>
-
-      <InfoContainer role="complementary" aria-label="Build details">
-        <InfoHeader>{buildDetails.title}</InfoHeader>
-        <InfoText>{buildDetails.shortDescription}</InfoText>
-        {selectedIndex != null && (
-          <LinkButton 
-            href={`/builds/${builds[selectedIndex].slug}`}
-            aria-label={`View details for ${builds[selectedIndex].title}`}
-          >
-            Select Build
-          </LinkButton>
-        )}
-      </InfoContainer>
     </BuildSelectContainer>
   );
 };
