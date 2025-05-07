@@ -35,10 +35,6 @@ export const CardImageWrapper = styled.div`
 export const CardImage = styled(Image)`
   object-fit: contain;
   padding: 0.5rem;
-  border-radius: 12px;
-  max-width: 69%;
-  margin: 0 auto;
-  display: block;
 `;
 
 export const CardContent = styled.div`

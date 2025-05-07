@@ -41,14 +41,8 @@ export const BrewDescriptionWrapper = styled.div`
 export const BrewImageWrapper = styled.div`
   width: 100%;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const BrewImage = styled(Image)`
   object-fit: contain;
-  border-radius: 12px;
-  width: 300px !important;
-  height: auto !important;
 `;

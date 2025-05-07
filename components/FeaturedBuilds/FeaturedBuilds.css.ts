@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import Link from 'next/link';
+import Image from "next/image";
 import { COLORS } from "styles/vars.css";
 import {
   FeaturedContainer,
   DescriptionWrapper,
-  FeaturedImage,
-  MobileContainer as SharedMobileContainer,
+  FeaturedImage
 } from '../shared/FeaturedSection.css';
 
 export const EXPAND_TIME = 0.5;
@@ -59,6 +60,10 @@ export const FeaturedBuildImage = styled.img`
   }
 `;
 
+export const FeaturedBuildLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+`;
 
 export const FeaturedBuildWrapper = styled.div<{ isBuildOpened: boolean }>`
   display: flex;
@@ -133,6 +138,7 @@ export const FeaturedBuildPreviewArea = styled.div`
 
 export const FeaturedBuildsContainer = styled(FeaturedContainer)`
   background: transparent;
+  box-shadow: none;
   
   @media (max-width: 1024px) {
     background: ${COLORS.BACKGROUND};
@@ -155,7 +161,33 @@ export const FeaturedBuildsLarge = styled.div`
   }
 `;
 
-export const FeaturedBuildDescriptionWrapper = styled(DescriptionWrapper);
+export const FeaturedBuildDescriptionWrapper = styled(DescriptionWrapper)`
+  padding: 2rem 4rem;
+  background: ${COLORS.BACKGROUND};
+  
+  h1 {
+    &::after {
+      bottom: -0.75rem;
+    }
+  }
+`;
+
+export const FeaturedBuildsSmall = styled.div`
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: ${COLORS.BACKGROUND};
+  border-radius: 20px;
+  overflow: hidden;
+  
+  @media (max-width: 1024px) {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 
 export const FeaturedImageWrapper = styled.div`
   width: 100%;
@@ -165,13 +197,12 @@ export const FeaturedImageWrapper = styled.div`
 
 export const SmallFeaturedBuildImage = styled(FeaturedImage)`
   border-radius: 0;
-  @media (max-width: 1024px) {
-    height: 160px;
-    object-fit: cover;
-    display: block;
-    background: ${COLORS.BACKGROUND};
-    box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 1.5px 6px rgba(0,0,0,0.22);
-  }
 `;
 
-export const MobileContainer = SharedMobileContainer;
+export const FeaturedBuildCarouselItem = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const FeaturedBuildCarouselImage = styled(Image)`
+`;
