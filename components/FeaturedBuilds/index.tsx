@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import { LinkButton } from "patterns";
 import { useRouter } from 'next/router';
 import { ROUTES } from 'constants/routes';
-import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildsLarge, FeaturedBuildsSmall, FeaturedBuildCarouselItem, FeaturedBuildCarouselImage, SmallFeaturedBuildImage, FeaturedImageWrapper } from './FeaturedBuilds.css'
+import { FeaturedBuildsContainer, FeaturedBuildWrapper, FeaturedBuildImage, FeaturedBuildPreview, FeaturedBuildDescriptionWrapper, FeaturedBuildPreviewArea, FeaturedBuildsLarge, SmallFeaturedBuildImage, FeaturedImageWrapper, MobileContainer } from './FeaturedBuilds.css'
 
 const NUM_FEATURED_BUILDS = 3;
 const AUTO_ADVANCE_TIME = 5000;
@@ -69,21 +69,23 @@ export const FeaturedBuilds = ({ builds }) => {
             <LinkButton href={`/builds/${largeBuildData.slug}`}>Read more</LinkButton>
           </FeaturedBuildDescriptionWrapper>
         </FeaturedBuildsLarge>
-        <FeaturedBuildsSmall onClick={handleMobileClick} style={{ cursor: 'pointer' }}>
+        <MobileContainer onClick={handleMobileClick} style={{ cursor: 'pointer' }}>
           <FeaturedImageWrapper>
-            <SmallFeaturedBuildImage src={builds[0].bannerImage.sizes.tablet.url}
+            <SmallFeaturedBuildImage
+              src={builds[0].bannerImage.sizes.tablet.url}
               alt={builds[0].bannerImage.alt}
               fill
-              priority />
+              priority
+            />
           </FeaturedImageWrapper>
           <FeaturedBuildDescriptionWrapper>
             <h1>Specialized Builds</h1>
             <p>Check out some fun and unique character builds for Dungeons and Dragons</p>
-            <div onClick={(e) => e.stopPropagation()}>
+            <div onClick={e => e.stopPropagation()}>
               <LinkButton href={ROUTES.BUILDS}>Read more</LinkButton>
             </div>
           </FeaturedBuildDescriptionWrapper>
-        </FeaturedBuildsSmall>
+        </MobileContainer>
       </FeaturedBuildsContainer>
     </>
   );
