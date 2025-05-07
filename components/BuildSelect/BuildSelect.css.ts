@@ -17,10 +17,13 @@ export const BuildSelectContainer = styled.div`
   align-items: flex-start;
   min-height: 100vh;
   gap: 2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
   @media (max-width: 1024px) {
     flex-direction: column;
     padding-top: 4rem;
+    padding-bottom: 0;
   }
 `;
 
@@ -29,7 +32,6 @@ export const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
-  max-width: 900px;
   width: 100%;
   
   @media (max-width: 1024px) {
@@ -145,24 +147,25 @@ export const InfoContainer = styled.div`
   border: 2px solid #ffd700;
   border-radius: 8px;
   width: 300px;
+  max-width: 30vw;
+  min-width: 220px;
   height: 400px;
   text-align: center;
   align-items: center;
   box-shadow: 0 0 20px rgba(255,215,0,0.2);
   backdrop-filter: blur(5px);
   justify-content: space-between;
+  order: 2;
   
   @media (max-width: 1024px) {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: auto;
-    transform: none;
-    border-radius: 8px 8px 0 0;
+    position: static;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     height: auto;
     min-height: 200px;
+    border-radius: 8px;
+    order: 0;
   }
 `;
 
