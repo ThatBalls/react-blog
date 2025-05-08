@@ -163,7 +163,7 @@ export const InfoContainer = styled.div`
     max-width: 100%;
     min-width: 0;
     height: auto;
-    min-height: 200px;
+    min-height: 240px;
     border-radius: 8px;
     order: 0;
   }
